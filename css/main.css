@@ -1,0 +1,255 @@
+@font-face {
+    font-family: 'akira_expandedsuper_bold';
+    src: url('css/fonts/akira-expanded-webfont.woff2') format('woff2'),
+         url('css/fonts/akira-expanded-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.dropdown-menu {
+    border-radius: .5rem!important;
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+    border: none;
+}
+
+.navbar-brand{
+    color: #bed8bf!important;
+    transition-duration: 2s;
+ 
+}
+
+.navbar{
+
+
+}
+.navbar-brand:hover{
+    color: #d4cdf5!important;
+  content:'/f753';
+
+}
+*
+{
+    font-family: 'Rubik', sans-serif;
+    
+}
+body
+{
+  padding-top: 70px;
+  background-color: #f7f4e7;
+}
+h2{
+  font-family: 'Montserrat', sans-serif!important;
+}
+nav .nav-link {
+    display: inline-block;
+    color: #bed8bf!important;
+    text-decoration: none;
+}
+
+
+
+.dropdown-item {
+ font-size: 90%;
+ border-radius: .1rem!important;
+}
+
+.dropdown-item:focus, .dropdown-item {
+    transition-duration: .6s;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+    color:#f7f4e7;
+    background-color: #bed8bf!important;
+}
+.cocntainer
+{
+
+background-color:#fefffe;
+}
+
+
+
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item:hover .nav-link{   }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+}
+Footer{
+    content: '';
+    height: 2px;
+    position: absolute;
+    left: 0;
+    right:0;
+    bottom: 0px;
+    background: linear-gradient(to right, #e6e1f9 20%,#d4cdf5 20%,#d4cdf5 40%,#cdc3f5 40%,#cdc3f5 60%,#c7b6ff 60%,#c7b6ff 80%,#bba9ff 80%);
+    
+  }
+
+
+  .btn-primary {
+    border: 1px solid transparent;
+    transition-duration: 1s;
+    color: white!important;
+    background-color: #b4d9b5!important;
+}
+
+.btn-primary:hover {
+    border: 1px solid #b4d9b5;
+    color: #b4d9b5!important;
+    background-color: #f7f4e7!important;
+}
+
+button .form-control-file {
+    color: white!important;
+    background-color: #b4d9b5!important;
+}
+
+.circle {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    transition: all 1s ease-in-out!important;
+
+
+   }
+
+   .circle :hover{
+    transform: scale(1.5)!important;
+    opacity: 1;
+   }
+
+   .module .collapse, .module .collapsing {
+    height: 0rem;  /* [NUM_OF_LINES] x [LINE_HEIGHT] */
+  }
+  
+  .module .collapse {
+    position: relative;  /* For ...'s content absolute positioning */
+    display: block;
+    overflow: hidden;
+ 
+  }
+  
+  .module .collapse:before {
+    content: ' ...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    
+  }
+  
+  .module .collapse.show {
+    height: auto;  /* You need to reset the height when not collapsed */
+  }
+  
+  .module .collapse.show:before {
+    display: none;  /* Of course you don't want to display ... */
+  }
+  
+  .module a.collapsed:after {
+      font-family: "Font Awesome 5 Free"!important;
+    content: "\f07b";
+    font-size:200%!important;
+    color: #bed8bf!important;
+    
+  }
+  
+  .module a:not(.collapsed):after {
+          font-family: "Font Awesome 5 Free"!important;
+    content: "\f07c";
+    font-size:200%!important;
+    color: #bed8bf!important;
+  }
+    .module a:hover {
+    text-decoration: none;
+}
+
+
+  audio {
+
+    width: 100%;
+    height: 20px;
+
+}
+
+input[type=file]::file-selector-button {
+  border: 1px solid transparent;
+  transition-duration: 1s;
+  color: #fff!important;
+  background-color: #a98c82!important;
+  border-radius: .25rem;
+}
+
+input[type=file]::file-selector-button:hover {
+  border: 1px solid #a98c82;
+  color: #784c43!important;
+  background-color: #f7f4e7!important;
+}
+
+.img-fluid{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  transition: all 1s ease-in-out!important;
+}
+
+.albumcover {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  transition: all 1.2s ease-in-out!important;
+
+
+ }
+
+.albumcover .img-fluid:hover{
+  opacity: 0.5;
+  background-color:red!important;
+}
+
+
+
+
+.fa-circle-notch:before{
+  display: inline-block;
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+header.nav-fixed .container {
+  position: fixed;
+  transition: 10s ease-in-out!important;
+  background-color:transparent!important;
+}
+
+.nav-active .container{
+  width: 100%;
+  transition: all .8s!important;
+  background-color:rgba(31,41,55,);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
