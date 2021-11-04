@@ -28,7 +28,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;">
 
             </div>
-            <h7 style="font-weight: 600; color:#784c43;">' . $row['Username'] . '</h7>
+            <h7 style="font-weight: 600; ">' . $row['Username'] . '</h7>
             </br>
                        Genre: ' . $row['Genre'] . '
                        </br>

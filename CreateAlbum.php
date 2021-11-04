@@ -37,10 +37,11 @@ if (isset($_POST['btnSubmit'])) {
 }
 ?>
 <html>
+  <body>
 <div class="container"style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
 <div class="contentcc "style="padding:2%;">
 <form  action="" method="post" autocomplete="off"enctype="multipart/form-data">
-    <body >
+
     <div class="mb-3" >
      <h3>Create Album</h3>
     </div>
@@ -74,7 +75,7 @@ while ($row = mysqli_fetch_assoc($result)) {
   </div>
 
   <div class="mb-3">
-  <input type="file" onchange="readURL(this)" class="form-control-file" id="exampleFormControlFile1" style=""name="upload" accept="image/png, image/jpeg">
+  <input type="file" onchange="readURL(this)" class="form-control-file" id="exampleFormControlFile1" style=""name="upload" accept="image/png, image/jpeg,image/gif">
 </br>
   <div class="row">
 <div class="col-sm-6 col-md-3"  >

@@ -86,7 +86,7 @@ if (!empty($_SESSION['Name'])) {
   </a>
   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
    <a class="dropdown-item" href="Dashboard.php"><i class="fas fa-border-all" style="font-size:120%"></i> Dashboard</a>
-    <a class="dropdown-item" href="#"><i class="fas fa-address-card" style="font-size:120%"></i> My profile</a>
+    <a class="dropdown-item" href="editProfile.php"><i class="fas fa-user-edit" style="font-size:120%"></i> Edit profile</a>
     <a class="dropdown-item" href="Upload_song.php"><i class="fas fa-file-upload" style="font-size:120%"></i> Upload music</a>
     <a class="dropdown-item" href="CreateAlbum.php"><i class="fas fa-pencil-alt" style="font-size:120%"></i> Create Album</a>
     <div class="dropdown-divider"></div>
