@@ -152,10 +152,10 @@ window.onscroll = () => {
 <?php
 function notifications($Message)
 {
-    echo '<div class="container">
+    echo '<div class="container" style = "transition: 1s!important;">
     <div class="row" style="">
       <div class="col-sm align-items-center" style="text-align: center;   ">
-      <div class="title" style="background-color:#bed8bf;border-radius: .5em; color:white; padding-top:1%;padding-bottom:1%;margin-bottom:5%;box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;">
+      <div class="title" style="background-color:#bed8bf;border-radius: .5em; color:white; padding-top:1%;padding-bottom:1%;margin-bottom:5%;box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px; ">
      <h4>' . $Message . '</h4>
   </div>
   </div>

@@ -114,14 +114,12 @@ button .form-control-file {
     justify-content: center;
     align-items: center;
     object-fit: cover;
-    transition: all 1s ease-in-out!important;
-
-
    }
 
    .circle :hover{
-    transform: scale(1.5)!important;
+    transform: scale(1.4)!important;
     opacity: 1;
+    border: solid #bed8bf 10px;
    }
 
    .module .collapse, .module .collapsing {
@@ -249,7 +247,7 @@ header.nav-fixed .container {
 .nav-active .container{
   width: 100%;
   transition: all .8s!important;
-  background-color:rgba(31,41,55,);
+  background-color: white;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 

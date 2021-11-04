@@ -24,7 +24,7 @@ while ($row = mysqli_fetch_assoc($result)) {
            <h4 style="font-weight: 600; color:#bed8bf;">' . $row['Title'] . '</h4>
            <div class="albumcover">
 
-                  <img class="img-fluid "src="Images/' . $row['Cover_art'] . '" style=" transition: all .4s ease-in-out!important;
+                  <img class="img-fluid "src="Images/' . $row['Cover_art'] . '" ;
                   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;">
 
             </div>
