@@ -25,9 +25,11 @@ while ($row = mysqli_fetch_assoc($result)) {
     echo '
     <a href ="profile.php?id=' . $row['User_ID'] . '">
            <div class="col-sm-12 col-md-3"  >
+           <div class = "Artistpage">
            <div class="circle" >
            <img class="img-fluid "src="Images/' . $row['Profile_Image'] . '" style=" transition: .4s!important;">
            </a>
+       </div>
        </div>
             ' . $row['Username'] . '
             </br>
@@ -38,6 +40,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 ';
 
 }
+$song = "88.wav";
 ?>
 
         </div>

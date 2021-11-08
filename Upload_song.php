@@ -48,7 +48,8 @@ if (isset($_POST['btnSubmit'])) {
 <html>
 <body >
 
-    <div class= "container" >
+<div class="container"style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
+<div class="contentcc "style="padding:2%;">
 <form  action="" method="post" autocomplete="off"enctype="multipart/form-data">
 
     <div class="mb-3" >
@@ -60,10 +61,14 @@ if (isset($_POST['btnSubmit'])) {
   </div>
 
   <div class="mb-3">
-  <input type="file" class="form-control-file" id="exampleFormControlFile1" style=""name="upload">
+  <input type="file" class="form-control-file" id="exampleFormControlFile1" style=""name="upload" accept="audio;">
+
+
   </div>
   <button type="submit" class="btn btn-primary"name="btnSubmit"><i class="fas fa-file-upload" style="font-size:150%!important"></i> Upload </button>
 </form>
+</div>
+</div>
 </div>
 </body>
 </html>

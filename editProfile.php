@@ -32,7 +32,7 @@ if (isset($_POST['btnSubmit'])) {
     $Updateresults = mysqli_query($conn, $Updateprofile);
 
     if ($Updateresults) {
-        notifications('<i class="fas fa-lock" style="font-size:140%; "></i> Album has been created');
+        notifications('<i class="fas fa-save"></i> Changes have been saved');
 
     } else {
         echo mysqli_error($conn);
@@ -50,7 +50,7 @@ if (isset($_POST['btnSubmit'])) {
 <form  action="" method="post" autocomplete="off"enctype="multipart/form-data">
 <div class="container"style="border-radius: 34px!important; background-color:white;">
       <div class="contentcc "style="padding:2%;">
-      <h1 style="font-weight:600">Edit profile</h1>
+      <h1 style="font-weight:600"><i class="fas fa-user-edit"></i> Edit profile</h1>
   <div class="row" style="">
   <div class="col-sm-6 align-items-center" style="text-align: center;   ">
 
@@ -58,11 +58,12 @@ if (isset($_POST['btnSubmit'])) {
 <img class ="img-fluid" id="blah" src="Images/<?php
 echo $currprofilepic ?>" alt="your image"/>
 </div>
+</br>
 <input type="file" onchange="readURL(this)" class="form-control-file" id="exampleFormControlFile1" style=""name="upload" accept="image/png, image/jpeg, image/gif">
 </div>
 </div>
 <hr/>
-<textarea name="Summary"class="form-control" id="exampleFormControlTextarea1" rows="3"><?php echo $currsummary ?></textarea>
+<textarea name="Summary"class="form-control" id="exampleFormControlTextarea1" rows="5"><?php echo $currsummary ?></textarea>
 <hr/>
 <button type="submit" class="btn btn-primary" name="btnSubmit"><i class="fas fa-save"></i></button>
 </form>

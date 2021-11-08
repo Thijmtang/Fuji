@@ -99,27 +99,37 @@ Footer{
     background-color: #f7f4e7!important;
 }
 
+
+
 button .form-control-file {
     color: white!important;
     background-color: #b4d9b5!important;
 }
+@media all and (max-width: 768px) 
+{
 
+  .Artistpage .circle {
+
+    height: 300px!important;
+    width: 300px!important;
+
+   }
+}
 .circle {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     border-radius: 50%;
     height: 150px;
     width: 150px;
     overflow: hidden;
-    display: flex;
+
     justify-content: center;
     align-items: center;
     object-fit: cover;
    }
 
-   .boeiecircle :hover{
-    transform: scale(1.4)!important;
-    opacity: 1;
-    border: solid #bed8bf 10px;
+   .Artistpage .circle :hover{
+    transform: scale(1.05)!important;
+    opacity: .75;
    }
 
    .module .collapse, .module .collapsing {
@@ -241,7 +251,8 @@ input[type=file]::file-selector-button:hover {
 header.nav-fixed .container {
   position: fixed;
   transition: 10s ease-in-out!important;
-  background-color:transparent!important;
+  background-color:#f3f3f4!important;
+
 }
 
 .nav-active .container{
@@ -251,3 +262,10 @@ header.nav-fixed .container {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+h1{
+  font-family: 'Bebas Neue'!important;
+}
+
+h4{
+  font-family: 'Bebas Neue'!important;
+}

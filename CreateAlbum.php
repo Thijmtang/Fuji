@@ -20,6 +20,7 @@ if (isset($_POST['btnSubmit'])) {
 // only insert into database if not empty
     if (empty($Albumtitle) || empty($Genre)) {
         echo "<h3 align=center>Vul alle velden in!</h3> ";
+        notifications('<i class="fas fa-check" style="font-size:140%; "></i> Album has been created');
     } else {
         //data for insertion
         move_uploaded_file($_FILES['upload']['tmp_name'], $FotoL) or die("Can't move file to $FotoL");
@@ -27,7 +28,7 @@ if (isset($_POST['btnSubmit'])) {
         $sql = "INSERT INTO album (Title, Description, Genre, Cover_art, Artist_ID)
         VALUES ('$Albumtitle', '$Description', '$Genre',  '$Foto' ,'$Artist_ID')";
         if (mysqli_query($conn, $sql)) {
-            notifications('<i class="fas fa-lock" style="font-size:140%; "></i> Album has been created');
+            notifications('<i class="fas fa-check" style="font-size:140%; "></i> Album has been created');
 
         } else {
             echo mysqli_error($conn);
@@ -75,13 +76,15 @@ while ($row = mysqli_fetch_assoc($result)) {
   </div>
 
   <div class="mb-3">
-  <input type="file" onchange="readURL(this)" class="form-control-file" id="exampleFormControlFile1" style=""name="upload" accept="image/png, image/jpeg,image/gif">
-</br>
+
+
   <div class="row">
 <div class="col-sm-6 col-md-3"  >
 <div class="albumcover" style="width=50%!important">
   <img class ="img-fluid" id="blah" src="Images/defaultalbumcoverpng.png" alt="your image" />
   </div>
+  </br>
+  <input type="file" onchange="readURL(this)" class="form-control-file" id="exampleFormControlFile1" style=""name="upload" accept="image/png, image/jpeg,image/gif">
   </div>
   </div>
   </div>
