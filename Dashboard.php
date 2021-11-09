@@ -64,7 +64,7 @@ while ($row = mysqli_fetch_assoc($activealbumsresults)) {
 <div class="container"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
       <div class="contentcc "style="padding:2%;">
 <?php
-echo '<h4 style="font-weight: 800; color:Black;"><i class="fas fa-eye-slash"></i> Private Albums</h4>';
+echo '<h4 style="font-weight: 800; color:Black;"><i class="fas fa-eye-slash"></i> Unlisted Albums</h4>';
 echo ' <div class="row" style="padding:1%; ">';
 
 while ($row2 = mysqli_fetch_assoc($inactivealbumsresults)) {

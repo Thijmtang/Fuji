@@ -13,12 +13,8 @@ $result = mysqli_query($conn, $sql);
 $number_of_results = mysqli_num_rows($result);
 $number_of_pages = ceil($number_of_results / $results_per_page);
 
-if (!isset($_GET['page'])) {
-    $page = 1;
-
-} else {
-    $page = $_GET['page'];
-}
+if (empty($_GET['page'])) {$_GET['page'] = 1;
+    $page = 1;} else { $page = $_GET['page'];}
 
 $this_page_first_results = ($page - 1) * $results_per_page;
 $sql = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username,users.User_ID
@@ -36,10 +32,11 @@ $result = mysqli_query($conn, $sql)
 <div class="container"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
       <div class="contentcc "style="padding:2%;">
 <?php
+//problem weird padding out of
 echo ' <div class="row" style="padding:1%; ">';
 while ($row = mysqli_fetch_assoc($result)) {
     echo '
-           <div class="col-sm-12 col-md-3"  >
+    <div class="col-sm-12 col-md-3"  >
            <h4 style="font-weight: 600;">' . $row['Title'] . '</h4>
            <div class="albumcover">
 
@@ -53,6 +50,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                        Genre: ' . $row['Genre'] . '
                        </br>
                        Date: ' . $row['Date'] . '
+
             </div>
 
           </br>
@@ -61,20 +59,23 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 ?>
-
 </div>
-<div class="container"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
-      <div class="contentcc "style="padding:2%;">
- <div class="row" style="padding:1%; ">
-<?php for ($page = 1; $page <= $number_of_pages; $page++) {
-    echo ' <div class="col-sm-12 col-md-1"  >';
-    echo '<a href="Music.php?page=' . $page . '" style="color:#bed8bf"> ' . $page . ' </a></div>';
 
+ <div class="col-sm-12 col-md-1"  >
+
+<?php for ($page = 1; $page <= $number_of_pages; $page++) {
+
+    if ($page == $_GET['page']) {
+
+        echo '<a href="Music.php?page=' . $page . '" style="color:#bed8bf;     text-decoration: underline;"> ' . $page . ' </a>';
+    } else {
+        echo '<a href="Music.php?page=' . $page . '" style="color:#E8E8E8"> ' . $page . ' </a>';
+    }
 }
 ?>
+</div>
 
-</div>
-</div>
+
 
 </body>
 </html>

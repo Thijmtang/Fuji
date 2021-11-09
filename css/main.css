@@ -18,9 +18,9 @@
  
 }
 
-.navbar{
+.navbar .container{
 
-
+background-color: white!important;
 }
 .navbar-brand:hover{
     color: #d4cdf5!important;
@@ -268,4 +268,10 @@ h1{
 
 h4{
   font-family: 'Bebas Neue'!important;
+}
+
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    opacity: 100%!important;
+    filter: invert();
 }
