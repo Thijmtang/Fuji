@@ -28,7 +28,6 @@ $result = mysqli_query($conn, $sql)
 
 <html>
 <body>
-
 <div class="container"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
       <div class="contentcc "style="padding:2%;">
 <?php
@@ -60,9 +59,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 ?>
 </div>
-
-
-
  <div class="row" style="padding:1%; ">
 <?php
 
@@ -82,7 +78,7 @@ echo '</div>';
 <?php
 
 echo ' <div class="col "  >';
-echo '<a href="Music.php?page=';if ($page != 1) {echo $page - 1;}
+echo '<a href="Music.php?page=';if ($page != 1) {echo $_GET['page'] - 1;}
 echo '"style="color:#bed8bf; margin-right:10%!important;float: left!important"><i class="fas fa-chevron-left"></i> </a>';
 
 echo '<a href="Music.php?page=';

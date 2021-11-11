@@ -42,7 +42,6 @@ AND Artist_ID = $UserID";
     <div class="carousel-inner">
 
  ';
-
             $count = 0;
             while ($row = mysqli_fetch_assoc($albumresult)) {
                 $count++;

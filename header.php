@@ -85,11 +85,14 @@ if (!empty($_SESSION['Name'])) {
 
   </a>
   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+       <a class="dropdown-item" href="Profile.php?id=' . $_SESSION['ID'] . '"> My profile</a>
    <a class="dropdown-item" href="Dashboard.php"><i class="fas fa-border-all" style="font-size:120%"></i> Dashboard</a>
-    <a class="dropdown-item" href="editProfile.php"><i class="fas fa-user-edit" style="font-size:120%"></i> Edit profile</a>
+
     <a class="dropdown-item" href="Upload_song.php"><i class="fas fa-file-upload" style="font-size:120%"></i> Upload music</a>
     <a class="dropdown-item" href="CreateAlbum.php"><i class="fas fa-pencil-alt" style="font-size:120%"></i> Create Album</a>
     <div class="dropdown-divider"></div>
+
+          <a class="dropdown-item" href="editProfile.php"><i class="fas fa-user-edit" style="font-size:120%"></i> Edit profile</a>
     <a class="dropdown-item" href="logout.php">logout <i class="fas fa-sign-out-alt"></i></a>
   </div>
 </li>';
@@ -108,7 +111,6 @@ if (!empty($_SESSION['Name'])) {
 document.addEventListener("DOMContentLoaded", function(){
 // make it as accordion for smaller screens
 if (window.innerWidth > 992) {
-
 	document.querySelectorAll('.navbar .nav-item').forEach(function(everyitem){
 
 		everyitem.addEventListener('mouseover', function(e){
