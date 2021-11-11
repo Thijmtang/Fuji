@@ -65,14 +65,23 @@ nav .nav-link {
 
 background-color:#fefffe;
 }
-
+@media (max-width: 991.98px){
+.navbar-expand-lg>.container, .navbar-expand-lg>.container-fluid {
+    padding-right: 10px!important;
+    padding-left: 10px!important;
+}
+.navbar-collapse {
+  border-top: 2px solid #bed8bf!important;
+  transition-duration: 1.5;
+}
+}
 
 
 @media all and (min-width: 992px) {
 	.navbar .nav-item .dropdown-menu{ display: none; }
 	.navbar .nav-item:hover .nav-link{   }
 	.navbar .nav-item:hover .dropdown-menu{ display: block; }
-	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+	.navbar .nav-item .dropdown-menu{  }
 }
 Footer{
     content: '';

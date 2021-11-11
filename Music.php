@@ -61,21 +61,38 @@ while ($row = mysqli_fetch_assoc($result)) {
 ?>
 </div>
 
- <div class="col-sm-12 col-md-1"  >
 
-<?php for ($page = 1; $page <= $number_of_pages; $page++) {
+
+ <div class="row" style="padding:1%; ">
+<?php
+
+echo ' <div class="col-sm-6 " >';
+for ($page = 1; $page <= $number_of_pages; $page++) {
 
     if ($page == $_GET['page']) {
-
-        echo '<a href="Music.php?page=' . $page . '" style="color:#bed8bf;     text-decoration: underline;"> ' . $page . ' </a>';
+        echo '<a href="Music.php?page=' . $page . '" style="color:#bed8bf;     text-decoration: underline;margin-right:10%!important"> ' . $page . ' </a>';
     } else {
-        echo '<a href="Music.php?page=' . $page . '" style="color:#E8E8E8"> ' . $page . ' </a>';
+        echo '<a href="Music.php?page=' . $page . '" style="color:#E8E8E8;margin-right:10%!important"> ' . $page . ' </a>';
     }
 }
+echo '</div>';
 ?>
 </div>
+<div class="row" style="padding:1%; ">
+<?php
 
+echo ' <div class="col "  >';
+echo '<a href="Music.php?page=';if ($page != 1) {echo $page - 1;}
+echo '"style="color:#bed8bf; margin-right:10%!important;float: left!important"><i class="fas fa-chevron-left"></i> </a>';
 
+echo '<a href="Music.php?page=';
+if ($_GET['page'] < $number_of_pages) {echo $_GET['page'] + 1;} else {echo $_GET['page'];}
+echo '"style="color:#bed8bf;!important;float: right!important;">
+<i class="fas fa-chevron-right"></i> </a>';
+
+echo '</div>';
+?>
+</div>
 
 </body>
 </html>
