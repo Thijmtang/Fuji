@@ -81,7 +81,10 @@ if (!empty($_SESSION['Name'])) {
     echo '<li class="nav-item dropdown">
 
   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-  <i class="fas fa-user-circle" style="font-size:150%!important;"> </i> ' . $_SESSION['Name'] . '
+
+  <div class="Profile_image" style = "width:35px;height:35px;" >
+  <img class ="img-fluid" id="Profile image" src="Images/' . $_SESSION['Profilepic'] . '"  />
+  </div>
 
   </a>
   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -107,48 +110,7 @@ if (!empty($_SESSION['Name'])) {
 </html>
 
 
-<script>
-document.addEventListener("DOMContentLoaded", function(){
-// make it as accordion for smaller screens
-if (window.innerWidth > 992) {
-	document.querySelectorAll('.navbar .nav-item').forEach(function(everyitem){
 
-		everyitem.addEventListener('mouseover', function(e){
-
-			let el_link = this.querySelector('a[data-bs-toggle]');
-
-			if(el_link != null){
-				let nextEl = el_link.nextElementSibling;
-				el_link.classList.add('show');
-				nextEl.classList.add('show');
-			}
-
-		});
-		everyitem.addEventListener('mouseleave', function(e){
-			let el_link = this.querySelector('a[data-bs-toggle]');
-
-			if(el_link != null){
-				let nextEl = el_link.nextElementSibling;
-				el_link.classList.remove('show');
-				nextEl.classList.remove('show');
-			}
-
-
-		})
-	});
-
-}
-// end if innerWidth
-});
-const navbar = document.querySelector('.navbar');
-window.onscroll = () => {
-    if (window.scrollY > 1) {
-        navbar.classList.add('nav-active');
-    } else {
-        navbar.classList.remove('nav-active');
-    }
-};
-  </script>
 
 
 <?php

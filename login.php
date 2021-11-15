@@ -25,6 +25,7 @@ if (empty($_SESSION['ID'])) {
                         if (password_verify($passw, $row['Password'])) {
                             $_SESSION['Name'] = $row['Username'];
                             $_SESSION['ID'] = $row['User_ID'];
+                            $_SESSION['Profilepic'] = $row['Profile_Image'];
                             notifications('<i class="fas fa-circle-notch" style="font-size:140%; "></i>  You have been logged in');
 
                             header("Location: index.php");

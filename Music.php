@@ -2,7 +2,7 @@
 session_start();
 include 'header.php';
 // Fetch all information for the albums and create a row for each
-$results_per_page = 8;
+$results_per_page = 4;
 $sql = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username,users.User_ID FROM album,genre,users
 WHERE album.Genre = genre.Genre_ID
 And album.Artist_ID = users.User_ID
@@ -66,9 +66,9 @@ echo ' <div class="col-sm-6 " >';
 for ($page = 1; $page <= $number_of_pages; $page++) {
 
     if ($page == $_GET['page']) {
-        echo '<a href="Music.php?page=' . $page . '" style="color:#bed8bf;     text-decoration: underline;margin-right:10%!important"> ' . $page . ' </a>';
+        echo '<a href="Music.php?page=' . $page . '" style="color:#bed8bf;     text-decoration: underline;margin-right:5%!important"> ' . $page . ' </a>';
     } else {
-        echo '<a href="Music.php?page=' . $page . '" style="color:#E8E8E8;margin-right:10%!important"> ' . $page . ' </a>';
+        echo '<a href="Music.php?page=' . $page . '" style="color:#E8E8E8;margin-right:5%!important"> ' . $page . ' </a>';
     }
 }
 echo '</div>';

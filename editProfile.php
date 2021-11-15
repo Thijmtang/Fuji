@@ -33,6 +33,7 @@ if (isset($_POST['btnSubmit'])) {
 
     if ($Updateresults) {
         notifications('<i class="fas fa-save"></i> Changes have been saved');
+        $_SESSION['Profilepic'] = $currprofilepic;
 
     } else {
         echo mysqli_error($conn);

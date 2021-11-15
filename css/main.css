@@ -10,6 +10,7 @@
     border-radius: .5rem!important;
     box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
     border: none;
+  
 }
 
 .navbar-brand{
@@ -77,12 +78,7 @@ background-color:#fefffe;
 }
 
 
-@media all and (min-width: 992px) {
-	.navbar .nav-item .dropdown-menu{ display: none; }
-	.navbar .nav-item:hover .nav-link{   }
-	.navbar .nav-item:hover .dropdown-menu{ display: block; }
-	.navbar .nav-item .dropdown-menu{  }
-}
+
 Footer{
     content: '';
     height: 2px;
@@ -136,6 +132,20 @@ button .form-control-file {
     object-fit: cover;
    }
 
+   .Profile_image
+   {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    overflow: hidden;
+
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+
+   }
+
    .Artistpage .circle :hover{
     transform: scale(1.05)!important;
     opacity: .75;
@@ -155,7 +165,7 @@ button .form-control-file {
   .module .collapse:before {
     content: ' ...';
     position: absolute;
-    right: 0;
+   
     bottom: 0;
     
   }

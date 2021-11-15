@@ -66,9 +66,9 @@ echo ' <div class="col-sm-3 " >';
 for ($page = 1; $page <= $number_of_pages; $page++) {
 
     if ($page == $_GET['page']) {
-        echo '<a href="Artists.php?page=' . $page . '" style="color:#bed8bf;     text-decoration: underline;margin-right:10%!important"> ' . $page . ' </a>';
+        echo '<a href="Artists.php?page=' . $page . '" style="color:#bed8bf;     text-decoration: underline;margin-right:5%!important"> ' . $page . ' </a>';
     } else {
-        echo '<a href="Artists.php?page=' . $page . '" style="color:#E8E8E8;margin-right:10%!important"> ' . $page . ' </a>';
+        echo '<a href="Artists.php?page=' . $page . '" style="color:#E8E8E8;margin-right:5%!important"> ' . $page . ' </a>';
     }
 }
 echo '</div>';

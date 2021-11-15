@@ -38,8 +38,9 @@ while ($row = mysqli_fetch_assoc($activealbumsresults)) {
            <a href="ChangeAlbumStatus.php?id=' . $row['Album_ID'] . '" onclick="return confirm(Are you sure?)">
            <button  type="submit" class="btn btn-primary"name="btnSubmit" style ="width:100%!important; margin-bottom:5%" ><i class="fas fa-minus" style="font-size:150%!important"></i> Deactivate </button>
            </a>
+           <a href="editAlbum.php?id=' . $row['Album_ID'] . '" onclick="return confirm(Are you sure?)">
            <button type="submit" class="btn btn-primary"name="btnSubmit"style ="width:100%!important;margin-bottom:5%"><i class="fas fa-edit" style="font-size:150%!important"></i> Edit </button>
-
+           </a>
            <div class="albumcover">
 
                   <img class="img-fluid "src="Images/' . $row['Cover_art'] . '" ;
