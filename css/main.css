@@ -7,10 +7,10 @@
 
 }
 .dropdown-menu {
-    border-radius: .5rem!important;
-    box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+  transition-duration: 2s;
+ 
     border: none;
-  
+  margin: 0;
 }
 
 .navbar-brand{
@@ -47,6 +47,26 @@ nav .nav-link {
     text-decoration: none;
 }
 
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    left: -94px;
+    border-radius: 0!important;
+}
+
+
+.show > .dropdown-menu {
+  max-height: 800px;
+  visibility: visible;
+  transition: all .5s ;
+}
+  
+.dropdown-menu {
+  display: block;
+  max-height: 0;
+  visibility: hidden;
+  transition: all .3s ;
+  overflow: hidden;
+}
 
 
 .dropdown-item {
@@ -58,7 +78,7 @@ nav .nav-link {
     transition-duration: .6s;
 }
 .dropdown-item:focus, .dropdown-item:hover {
-    color:#f7f4e7;
+    color:white;
     background-color: #bed8bf!important;
 }
 .cocntainer
@@ -71,11 +91,51 @@ background-color:#fefffe;
     padding-right: 10px!important;
     padding-left: 10px!important;
 }
-.navbar-collapse {
-  border-top: 2px solid #bed8bf!important;
-  transition-duration: 1.5;
+
 }
+@media (max-width: 768px) {
+  .navbar .container{
+    margin-left: 0!important;
+    margin-right: 0!important;
+    max-width: 100%;
+
+    }
+  .navbar-collapse {
+    background-color: white!important;
+      position: fixed;
+      top: 7%;
+      left: 0;
+      padding-left: 5%;
+      padding-right: 15px;
+      padding-bottom: 15px;
+   
+      margin-right: 10px
+      
+!important;
+    margin-left: 10
+px
+!important;
+width: 100%;
+  }
+
+  .navbar-collapse.collapsing {
+      height: 100%;
+      left: -75%;
+      transition: height 0s ease;
+  }
+
+  .navbar-collapse.show {
+      height: 100%;
+      left: 0;
+      transition: left 400ms ease-in-out;
+  }
+
+  .navbar-toggler.collapsed ~ .navbar-collapse {
+      transition: left 400ms ease-in;
+  }
+
 }
+
 
 
 
@@ -115,16 +175,16 @@ button .form-control-file {
 
   .Artistpage .circle {
 
-    height: 300px!important;
-    width: 300px!important;
+    height: 150px!important;
+    width: 150px!important;
 
    }
 }
 .circle {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     border-radius: 50%;
-    height: 150px;
-    width: 150px;
+    height: 150px!important;
+    width: 150px!important;
     overflow: hidden;
 
     justify-content: center;
