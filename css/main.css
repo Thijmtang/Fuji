@@ -51,6 +51,7 @@ nav .nav-link {
     position: absolute;
     left: -94px;
     border-radius: 0!important;
+    background-color: #bed8bf!important;
 }
 
 
@@ -76,10 +77,11 @@ nav .nav-link {
 
 .dropdown-item:focus, .dropdown-item {
     transition-duration: .6s;
+    color:white;
 }
 .dropdown-item:focus, .dropdown-item:hover {
-    color:white;
-    background-color: #bed8bf!important;
+    color:#bed8bf;
+    background-color: white!important;
 }
 .cocntainer
 {
