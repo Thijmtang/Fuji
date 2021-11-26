@@ -22,15 +22,26 @@ AND Artist_ID = $UserID";
 
             echo '<div class="container"style="border-radius: 34px!important; background-color:white;">
         <div class="contentcc "style="padding:2%;">
-        <h1 style="font-weight:100">' . $username . '</h1>
+        <div class="row" style="">
+        <h1 style="font-weight:100">' . $username . ' </h1>
+           </div>
+              <div class="row" style="">
+<a href="FollowRequest.php?' . $UserID . '">
+    <button type="submit" class="btn btn-primary"name="btnSubmit"style ="width:100%!important;margin-bottom:5%;float:left"> Follow </button>
+           </a>
+           </div>
+
+
     <div class="row" style="">
     <div class="col-sm-6 align-items-center" style="text-align: center;   ">
-
+    <div class="col  ">
   <div class="circle">
              <img class="img-fluid "src="Images/' . $userprofilepic . '" style=" transition: all .4s ease-in-out!important;">
   </div>
+   </div>
 
-  </br><div class="summary" style = "float:left">' . $userSummary . '</div>
+
+  </br><div class="summary" style = "float:left!important">' . $userSummary . '</div>
 
   </div>
 
