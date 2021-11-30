@@ -51,7 +51,8 @@ nav .nav-link {
     position: absolute;
     left: -94px;
     border-radius: 0!important;
-    background-color: #bed8bf!important;
+    background-color: white!important;
+    color:#bed8bf;
 }
 
 
@@ -67,6 +68,7 @@ nav .nav-link {
   visibility: hidden;
   transition: all .3s ;
   overflow: hidden;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 
 
@@ -77,11 +79,11 @@ nav .nav-link {
 
 .dropdown-item:focus, .dropdown-item {
     transition-duration: .6s;
-    color:white;
+    color:#bed8bf;
 }
 .dropdown-item:focus, .dropdown-item:hover {
-    color:#bed8bf;
-    background-color: white!important;
+    color:white;
+    background-color:   #bed8bf!important;
 }
 .cocntainer
 {
@@ -92,6 +94,7 @@ background-color:#fefffe;
 .navbar-expand-lg>.container, .navbar-expand-lg>.container-fluid {
     padding-right: 10px!important;
     padding-left: 10px!important;
+    top:9%;
 }
 
 }
@@ -102,10 +105,15 @@ background-color:#fefffe;
     max-width: 100%;
 
     }
+
+    .circle {
+
+      float:left;
+    }  
   .navbar-collapse {
     background-color: white!important;
-      position: fixed;
-      top: 7%;
+
+
       left: 0;
       padding-left: 5%;
       padding-right: 15px;
@@ -120,21 +128,7 @@ px
 width: 100%;
   }
 
-  .navbar-collapse.collapsing {
-      height: 100%;
-      left: -75%;
-      transition: height 0s ease;
-  }
-
-  .navbar-collapse.show {
-      height: 100%;
-      left: 0;
-      transition: left 400ms ease-in-out;
-  }
-
-  .navbar-toggler.collapsed ~ .navbar-collapse {
-      transition: left 400ms ease-in;
-  }
+  
 
 }
 
@@ -155,7 +149,7 @@ Footer{
 
   .btn-primary {
     border: 1px solid transparent;
-    transition-duration: 1s;
+    transition-duration: .3s;
     color: white!important;
     background-color: #b4d9b5!important;
 }
@@ -182,6 +176,23 @@ button .form-control-file {
 
    }
 }
+
+.Userlink a{
+
+
+    transition-duration: .3s;
+
+  color:black!important;
+}
+.Userlink a:hover{
+
+
+  transition-duration: .3s;
+
+color:#bed8bf!important;
+}
+
+
 .circle {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     border-radius: 50%;
@@ -351,8 +362,29 @@ h4{
   font-family: 'Bebas Neue'!important;
 }
 
-.carousel-control-next,
-.carousel-control-prev /*, .carousel-indicators */ {
-    opacity: 100%!important;
-    filter: invert();
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  font-family: "Font Awesome 5 Free";
+  background-image: none;
 }
+
+.carousel-control-next-icon:after
+{
+  font-weight:600;
+  content: "\f152";
+  font-size: 55px;
+  color: #bed8bf;
+}
+
+.carousel-control-prev-icon:after {
+  font-weight:600;
+  content: "\f191";
+  font-size: 55px;
+  color: #bed8bf;
+}
+

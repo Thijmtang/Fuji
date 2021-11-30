@@ -42,9 +42,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                   <img class="img-fluid "src="Images/' . $row['Cover_art'] . '" ;
                   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;">
 
-            </div>
+            </div>    <div class="Userlink">
+
               <a style = "color:black; text-decoration:none!important"href ="profile.php?id=' . $row['User_ID'] . '">
-            <h7 style="font-weight: 600; ">' . $row['Username'] . '</h7></a>
+              ' . $row['Username'] . '</a>
+     </div
             </br>
                        Genre: ' . $row['Genre'] . '
                        </br>

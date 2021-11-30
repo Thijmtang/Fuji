@@ -2,7 +2,7 @@
 <?php
 session_start();
 include 'header.php';
-$results_per_page = 4;
+$results_per_page = 8;
 $sql = "SELECT Username, User_ID,  Profile_Image
 FROM album, users
 WHERE users.User_ID = album.Artist_ID
@@ -47,7 +47,11 @@ while ($row = mysqli_fetch_assoc($result)) {
            </a>
        </div>
        </div>
-            ' . $row['Username'] . '
+       <div class="Userlink">
+
+       <a style = "color:black; text-decoration:none!important"href ="profile.php?id=' . $row['User_ID'] . '">
+       ' . $row['Username'] . '</a>
+</div
             </br>
 
             </div>
