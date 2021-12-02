@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 11, 2021 at 12:17 AM
+-- Generation Time: Dec 02, 2021 at 10:56 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `album` (
   UNIQUE KEY `Artist` (`Album_ID`),
   KEY `Artist_ID` (`Artist_ID`),
   KEY `Genre` (`Genre`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `album`
@@ -54,7 +54,7 @@ INSERT INTO `album` (`Album_ID`, `Title`, `Description`, `Genre`, `Cover_art`, `
 (4, '123', '3123', 1, '10_10_2021-20-53_33download.png', NULL, NULL, 0),
 (5, '123', '3123', 6, '10_10_2021-20-53_57download.png', NULL, NULL, 0),
 (6, 'playboy', '123', 4, '10_10_2021-20-59_50playboy-400x396-4.jpg', NULL, NULL, 0),
-(7, 'Playboy', '123', 5, '10_10_2021-21-00_30playboy-400x396-4.jpg', NULL, NULL, 3),
+(7, 'Playboy', '123', 5, '10_10_2021-21-00_30playboy-400x396-4.jpg', '2021-11-17', 1, 3),
 (8, 'Call me if you get lost', '', 2, '10_17_2021-23-19_50ab67616d0000b273696b4e67423edd64784bfbb4.jpg', NULL, 1, 5),
 (9, 'Playboy', '', 1, '10_17_2021-23-34_55playboy-400x396-4.jpg', NULL, 1, 0),
 (10, 'Certified Lover Boy', '', 4, '10_18_2021-00-01_40Drake-Certified-Lover-Boy-1630334465.jpeg', NULL, 1, 6),
@@ -66,13 +66,52 @@ INSERT INTO `album` (`Album_ID`, `Title`, `Description`, `Genre`, `Cover_art`, `
 (23, 'test', 'awdadwd', 1, '10_18_2021-19-44_25download20211006011636.png', NULL, NULL, 5),
 (24, 'Someboy', '', 1, '10_25_2021-12-25_18ab67616d0000b2736ca58463f6ae71fe4ed8e93d.jpg', NULL, 1, 9),
 (25, 'always', '', 1, '10_30_2021-00-04_2685miik-always-preview-m3.jpg', NULL, 1, 9),
-(26, 'Shoot For The Stars Aim For The Moon', '', 3, '11_04_2021-21-06_52ab67616d0000b27377ada0863603903f57b34369.jpg', NULL, 1, 11),
+(26, 'Shoot For The Stars Aim For The Moon', '', 3, '11_04_2021-21-06_52ab67616d0000b27377ada0863603903f57b34369.jpg', NULL, NULL, 11),
 (27, 'Meet The Woo', '', 2, '11_04_2021-21-09_52ab67616d0000b2738fe5d04b06aff90f9fe796f5.jpg', NULL, 1, 11),
 (28, 'Die Lit', '', 2, '11_06_2021-12-38_34ab67616d0000b273a1e867d40e7bb29ced5c0194.jpg', NULL, 1, 12),
 (29, 'Whole Lotta Red', '', 2, '11_06_2021-17-47_08ab67616d0000b27398ea0e689c91f8fea726d9bb.jpg', NULL, 1, 12),
 (30, 'Legends Never Die', '', 2, '11_06_2021-20-59_4881hF73Kv9GL._AC_SY450_.jpg', NULL, 1, 13),
 (31, 'To Pimp A Butterfly', '', 2, '11_07_2021-14-23_13Kendrick-Lamar-To-Pimp-A-Butterfly-album-cover-web-optimised-820.jpg', NULL, 1, 16),
-(32, 'Stokeley', '', 2, '11_10_2021-23-40_37ab67616d0000b273e62c8561e3b1bd9ad952ce01.jpg', NULL, 1, 17);
+(32, 'Stokeley', '', 2, '11_10_2021-23-40_37ab67616d0000b273e62c8561e3b1bd9ad952ce01.jpg', '2021-11-11', 1, 17),
+(33, 'Astro World', '', 2, '11_15_2021-15-13_14550x550.jpg', NULL, NULL, 18),
+(34, 'Astro World', '', 2, '11_15_2021-15-16_41550x550.jpg', '2021-11-15', 1, 18);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `follows`
+--
+
+DROP TABLE IF EXISTS `follows`;
+CREATE TABLE IF NOT EXISTS `follows` (
+  `Follow_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Follower_ID` int(11) NOT NULL,
+  `Receiver_ID` int(11) NOT NULL,
+  `Active` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`Follow_ID`),
+  KEY `Follower_ID` (`Follower_ID`,`Receiver_ID`),
+  KEY `Receiver_ID` (`Receiver_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `follows`
+--
+
+INSERT INTO `follows` (`Follow_ID`, `Follower_ID`, `Receiver_ID`, `Active`) VALUES
+(48, 5, 17, 1),
+(49, 5, 16, NULL),
+(50, 5, 11, NULL),
+(51, 5, 12, 1),
+(52, 5, 13, 1),
+(53, 5, 9, NULL),
+(54, 5, 6, 1),
+(55, 9, 6, 1),
+(56, 9, 13, NULL),
+(57, 9, 17, NULL),
+(58, 9, 16, 1),
+(59, 9, 12, NULL),
+(60, 9, 3, NULL),
+(61, 5, 18, NULL);
 
 -- --------------------------------------------------------
 
@@ -85,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `genre` (
   `Genre_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(20) NOT NULL,
   PRIMARY KEY (`Genre_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `genre`
@@ -104,7 +143,8 @@ INSERT INTO `genre` (`Genre_ID`, `Name`) VALUES
 (10, 'Punk'),
 (11, 'Christian'),
 (12, 'Latin'),
-(13, 'Blues');
+(13, 'Blues'),
+(14, 'German pop');
 
 -- --------------------------------------------------------
 
@@ -116,18 +156,19 @@ DROP TABLE IF EXISTS `highlightedalbums`;
 CREATE TABLE IF NOT EXISTS `highlightedalbums` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ALBUM_ID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`ID`),
+  KEY `ALBUM_ID` (`ALBUM_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `highlightedalbums`
 --
 
 INSERT INTO `highlightedalbums` (`ID`, `ALBUM_ID`) VALUES
-(1, 25),
-(2, 24),
 (3, 10),
-(4, 11);
+(4, 11),
+(2, 24),
+(1, 25);
 
 -- --------------------------------------------------------
 
@@ -145,17 +186,14 @@ CREATE TABLE IF NOT EXISTS `songs` (
   PRIMARY KEY (`Song_ID`),
   KEY `Album` (`Album`),
   KEY `Artist` (`Artist`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `songs`
 --
 
 INSERT INTO `songs` (`Song_ID`, `Album`, `Artist`, `Title`, `File`) VALUES
-(1, NULL, 9, 'Yaosobi', '10_29_2021-18-41_20YOASOBI_YoruniKakeruã€ VocalOnlyã€‘.mp3'),
 (4, NULL, 9, 'rdrhdrh', '10_29_2021-18-45_23ultron- 808.wav'),
-(5, NULL, 9, 'Test', '11_03_2021-19-39_29Killing Me Softly With His Song.mp3'),
-(6, NULL, 9, 'yrty', '11_03_2021-19-41_58eaJ x keshi - pillows (lyrics).mp3'),
 (7, NULL, 9, 'g', '11_03_2021-19-42_59anarchyclip.wav'),
 (8, NULL, 9, 'g', '11_03_2021-19-44_25anarchyclip.wav'),
 (9, NULL, 9, 'g', '11_03_2021-19-44_28anarchyclip.wav'),
@@ -172,7 +210,8 @@ INSERT INTO `songs` (`Song_ID`, `Album`, `Artist`, `Title`, `File`) VALUES
 (20, NULL, 9, 'test', '11_03_2021-19-45_30'),
 (21, NULL, 11, 'test', '11_06_2021-12-19_5610_18_2021-19-20_15brockhampton type beat.wav_vocals.mp3'),
 (22, NULL, 11, 'kh', '11_06_2021-12-32_47anarchyclip.wav'),
-(23, NULL, 12, 'dontcare', '11_07_2021-11-16_52Drake fair trade F_MINOR 154BPM.wav');
+(23, NULL, 12, 'dontcare', '11_07_2021-11-16_52Drake fair trade F_MINOR 154BPM.wav'),
+(24, NULL, 18, 'boeie', '11_15_2021-15-25_47Pissy Pamper.mp3');
 
 -- --------------------------------------------------------
 
@@ -191,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Summary` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`User_ID`),
   KEY `User_ID` (`User_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -213,7 +252,8 @@ INSERT INTO `users` (`User_ID`, `Username`, `Email`, `Password`, `Admin`, `Profi
 (14, 'Brockhampton', 'Brockhampton@gmail.com', '$2y$10$d0tMG8HR2NZ5ATvjYEdCuOtyOFgi8JJd0qWuABvDFMDk8c226y5fO', 0, '11_06_2021-21-46_36Pearce-BrockhamptonPandemic.jpg', 'Best boyband'),
 (15, 'admin', 'admin@gmail.com', '$2y$10$7xr00/sf6i/AKc17P5yQ1eI6gbr5RywLc09zoZDW678topIHa8Itm', 1, '11_07_2021-12-45_57Donkey_Kong_character.png', ''),
 (16, 'Kendrick Lamar', 'KendrickLamar@gmail.com', '$2y$10$aNrK6Oxqg85P6.5oxv/a/.po6UvgrBnxw2NQDWrfBslfO1f5Pc3e.', 0, '11_08_2021-13-31_57ab6761610000e5eb2183ea958d3777d4c485138a.jpg', ''),
-(17, 'Ski Mask The Slump God', 'skimask@gmail.com', '$2y$10$cnMLiY00tuR9kMibZERgpOkRBAPksjq9YNOIfk0PzEIO/mqlHuCP.', 0, '11_10_2021-23-40_06ab6761610000e5ebc422e139e232c73565c7c3d6.jpg', 'Suckkiii');
+(17, 'Ski Mask The Slump God', 'skimask@gmail.com', '$2y$10$cnMLiY00tuR9kMibZERgpOkRBAPksjq9YNOIfk0PzEIO/mqlHuCP.', 0, '11_10_2021-23-40_06ab6761610000e5ebc422e139e232c73565c7c3d6.jpg', 'Suckkiii'),
+(18, 'Travis Scott', 'cactus@gmail.com', '$2y$10$xmqb.kXzU/817bTKQfTxwet6FjlLQFT.LSS8v0OkiQW4Zn8ivfo7G', 0, '11_15_2021-15-12_595d6aef6f1513c5e4ff365e989e5c772c.jpg', 'Its lit');
 
 --
 -- Constraints for dumped tables
@@ -224,6 +264,19 @@ INSERT INTO `users` (`User_ID`, `Username`, `Email`, `Password`, `Admin`, `Profi
 --
 ALTER TABLE `album`
   ADD CONSTRAINT `album_ibfk_1` FOREIGN KEY (`Genre`) REFERENCES `genre` (`Genre_ID`);
+
+--
+-- Constraints for table `follows`
+--
+ALTER TABLE `follows`
+  ADD CONSTRAINT `follows_ibfk_1` FOREIGN KEY (`Follower_ID`) REFERENCES `users` (`User_ID`),
+  ADD CONSTRAINT `follows_ibfk_2` FOREIGN KEY (`Receiver_ID`) REFERENCES `users` (`User_ID`);
+
+--
+-- Constraints for table `highlightedalbums`
+--
+ALTER TABLE `highlightedalbums`
+  ADD CONSTRAINT `highlightedalbums_ibfk_1` FOREIGN KEY (`ALBUM_ID`) REFERENCES `album` (`Album_ID`);
 
 --
 -- Constraints for table `songs`
