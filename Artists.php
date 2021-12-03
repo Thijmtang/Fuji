@@ -49,7 +49,7 @@ while ($row = mysqli_fetch_assoc($result)) {
        </div>
        <div class="Userlink">
 
-       <a style = "color:black; text-decoration:none!important"href ="profile.php?id=' . $row['User_ID'] . '">
+       <a style = "color:black; text-decoration:none!important"href ="profile.php?id=' . urlencode($row['User_ID']) . '">
        ' . $row['Username'] . '</a>
 </div
             </br>

@@ -95,7 +95,7 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
 
 
   </br>
-  <div class="summary" style = "float:left!important">' . $userSummary . '</div>
+  <div class="summary" style = "float:left!important">' . htmlspecialchars($userSummary, ENT_QUOTES) . '</div>
 
   </div>
 
