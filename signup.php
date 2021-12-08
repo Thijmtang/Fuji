@@ -48,9 +48,12 @@ if (empty($_SESSION['ID'])) {
 
 
 <html>
-    <div class= "container">
-<form  action="" method="post">
     <body>
+
+<form  action="" method="post">
+
+<div class="container transition"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
+      <div class="contentcc "style="padding:2%;">
     <div class="mb-3" >
      <h3>Signup</h3>
     </div>
@@ -67,7 +70,10 @@ if (empty($_SESSION['ID'])) {
   </div>
   <button type="submit" class="btn btn-primary"name="btnSubmit"><i class="fas fa-user-plus
   " style="font-size:150%!important"></i> Sign up </button>
-</form>
+
 </div>
+</div>
+</form>
+
 </body>
 </html>

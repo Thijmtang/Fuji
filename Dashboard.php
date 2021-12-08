@@ -1,29 +1,33 @@
 
 <?php
+ob_start();
 session_start();
 include 'header.php';
+
+if ($_SESSION["LOGGED_IN"] == false) {
+    header('Location: index.php');
+    notifications("Please log in first");
+    exit;
+}
+
 // Fetch all information for the albums and create a row for each
 $activealbums = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username FROM album,genre,users
 WHERE album.Genre = genre.Genre_ID
 And album.Artist_ID = users.User_ID
 AND Active = 1
 AND User_ID =$_SESSION[ID]";
-
 $inactivealbums = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username FROM album,genre,users
 WHERE album.Genre = genre.Genre_ID
 And album.Artist_ID = users.User_ID
 AND Active IS NULL
 AND User_ID =$_SESSION[ID]";
-
 $inactivealbumsresults = mysqli_query($conn, $inactivealbums);
 $activealbumsresults = mysqli_query($conn, $activealbums);
-
 ?>
 
 <html>
 <body>
-
-<div class="container"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
+<div class="container transition"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
       <div class="contentcc "style="padding:2%;">
 <?php
 echo '<h4 style="font-weight: 800; color:Black;"><i class="fas fa-eye"></i> Public Albums</h4>';
@@ -58,7 +62,7 @@ while ($row = mysqli_fetch_assoc($activealbumsresults)) {
 </div>
 </div></div>
 
-<div class="container"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
+<div class="container transition"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
       <div class="contentcc "style="padding:2%;">
 <?php
 echo '<h4 style="font-weight: 800; color:Black;"><i class="fas fa-eye-slash"></i> Unlisted Albums</h4>';
@@ -96,5 +100,7 @@ while ($row2 = mysqli_fetch_assoc($inactivealbumsresults)) {
 ?>
 </div>
 </div>
+
+
 </body>
 </html>

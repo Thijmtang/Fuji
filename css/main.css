@@ -7,7 +7,7 @@
 
 }
 *{
-   transition: 2s!important;
+
     transition-property: opacity, left, top, height;
 }
 .dropdown-menu {
@@ -24,32 +24,57 @@
 }
 
 .navbar .container{
-
-background-color: white!important;
+  border-bottom-left-radius: 34px!important;
+      border-bottom-right-radius: 34px!important;
+      padding-bottom: 10px;
+      background-color: white;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
 }
 .navbar-brand:hover{
-    color: #d4cdf5!important;
-  content:'/f753';
 
 }
-*
-{
-    font-family: 'Rubik', sans-serif;
-    
+.fa-mountain:before {
+  transition-duration: .2s;
+  content: "\f6fc";
 }
-body
+
+
+body 
 {
- 
-  padding-top: 70px;
+
+
   background-color: #f3f3f4;
 }
+ .transition
+{
+  animation:transitionIn 2s;
+
+}
+
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+
+
+@keyframes transitionIn{
+from{
+  opacity: 0; transform: rotateX(-10deg);}
+to{
+opacity: 1;
+transform: rotateX(0);}
+
+}
+
+
 h2{
   font-family: 'Montserrat', sans-serif!important;
 }
 nav .nav-link {
-    display: inline-block;
-    color: #bed8bf!important;
-    text-decoration: none;
+  color:#bed8bf!important;
+  font-size: 1.05rem;
 }
 
 .navbar-expand-lg .navbar-nav .dropdown-menu {
@@ -80,11 +105,12 @@ nav .nav-link {
 .dropdown-item {
  font-size: 90%;
  border-radius: .1rem!important;
+ transition: .1s;
 }
 
 .dropdown-item:focus, .dropdown-item {
     transition-duration: .6s;
-    color:#bed8bf;
+    color:black;
 }
 .dropdown-item:focus, .dropdown-item:hover {
     color:white;
@@ -111,10 +137,7 @@ background-color:#fefffe;
 
     }
 
-    .circle {
 
-      float:left;
-    }  
   .navbar-collapse {
     background-color: white!important;
 
@@ -185,16 +208,15 @@ button .form-control-file {
 .Userlink a{
 
 
-    transition-duration: .3s;
-
-  color:black!important;
+    transition: .3s!important;
+  color:black;
 }
 .Userlink a:hover{
 
 
-  transition-duration: .3s;
-
-color:#bed8bf!important;
+font-weight: bold;
+text-decoration: none;
+color:white!important;
 }
 
 
@@ -320,10 +342,6 @@ input[type=file]::file-selector-button:hover {
 
  }
 
-.albumcover .img-fluid:hover{
-  opacity: 0.5;
-
-}
 
 
 
@@ -359,13 +377,7 @@ header.nav-fixed .container {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-h1{
-  font-family: 'Bebas Neue'!important;
-}
 
-h4{
-  font-family: 'Bebas Neue'!important;
-}
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
@@ -381,15 +393,85 @@ h4{
 .carousel-control-next-icon:after
 {
   font-weight:600;
-  content: "\f152";
+  content: "\f105";
   font-size: 55px;
   color: #bed8bf;
 }
 
 .carousel-control-prev-icon:after {
   font-weight:600;
-  content: "\f191";
+  content: "\f104";
   font-size: 55px;
   color: #bed8bf;
+}
+
+.fa-beat {
+  animation:fa-beat 5s ease infinite;
+}
+@keyframes fa-beat {
+  0% {
+    transform:scale(1);
+  }
+  5% {
+    transform:scale(1.25);
+  }
+  20% {
+    transform:scale(1);
+  }
+  30% {
+    transform:scale(1);
+  }
+  35% {
+    transform:scale(1.25);
+  }
+  50% {
+    transform:scale(1);
+  }
+  55% {
+    transform:scale(1.25);
+  }
+  70% {
+    transform:scale(1);
+  
+  }
+}
+.fa-bounce {
+  display: inline-block;
+  position: relative;
+  -moz-animation: bounce 1s infinite linear;
+  -o-animation: bounce 1s infinite linear;
+  -webkit-animation: bounce 1s infinite linear;
+  animation: bounce 1s infinite linear;
+}
+
+@-webkit-keyframes bounce {
+  0% { top: 0; }
+  50% { top: -0.2em; }
+  70% { top: -0.3em; }
+  100% { top: 0; }
+}
+@-moz-keyframes bounce {
+  0% { top: 0; }
+  50% { top: -0.2em; }
+  70% { top: -0.3em; }
+  100% { top: 0; }
+}
+@-o-keyframes bounce {
+  0% { top: 0; }
+  50% { top: -0.2em; }
+  70% { top: -0.3em; }
+  100% { top: 0; }
+}
+@-ms-keyframes bounce {
+  0% { top: 0; }
+  50% { top: -0.2em; }
+  70% { top: -0.3em; }
+  100% { top: 0; }
+}
+@keyframes bounce {
+  0% { top: 0; }
+  50% { top: -0.2em; }
+  70% { top: -0.3em; }
+  100% { top: 0; }
 }
 

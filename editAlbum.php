@@ -3,56 +3,6 @@ session_start();
 include 'header.php';
 
 ?>
-
-<?php
-session_start();
-include 'header.php';
-
-?>
-<?php
-
-$sql = "SELECT *
-FROM ALBUMS
-WHERE ALBUM_ID =  $GET[ID]
-";
-
-$result = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($result)) {
-    $currsummary = $row['Summary'];
-    $currprofilepic = $row['Profile_Image'];
-}
-//submits the data into the database
-if (isset($_POST['btnSubmit'])) {
-    $date = date('m_d_Y-H-i_s');
-    $Foto = $date . $_FILES['upload']['name'];
-    $FotoL = 'Images/' . $date . $_FILES['upload']['name'];
-    if (!empty($_FILES['upload']['name']) && $currprofilepic != $_FILES['upload']['name']) {
-
-        move_uploaded_file($_FILES['upload']['tmp_name'], $FotoL) or die("Can't move file to $FotoL");
-        $currprofilepic = $Foto;
-    }
-
-    $newSummary = mysqli_real_escape_string($conn, $_POST['Summary']);
-    $Updateprofile = "UPDATE users SET Summary='$newSummary', Profile_Image= '$currprofilepic' WHERE  User_ID = '$_SESSION[ID]'";
-    $Updateresults = mysqli_query($conn, $Updateprofile);
-
-    if ($Updateresults) {
-        notifications('<i class="fas fa-save"></i> Changes have been saved');
-        $_SESSION['Profilepic'] = $currprofilepic;
-
-    } else {
-        echo mysqli_error($conn);
-    }
-    mysqli_close($conn);
-
-}
-?>
-
-
-
-
-
-
 <?php
 //submits the data into the database
 if (isset($_POST['btnSubmit'])) {
@@ -94,7 +44,7 @@ if (isset($_POST['btnSubmit'])) {
 <form  action="" method="post" autocomplete="off"enctype="multipart/form-data">
 
     <div class="mb-3" >
-     <h3><i class="fas fa-edit" style="font-size:150%!important"></i>Edit Album</h3>
+     <h3>Create Album</h3>
     </div>
   <div class="mb-3">
 

@@ -1,14 +1,21 @@
 
 <?php
 session_start();
+ob_start();
 include 'header.php';
+if ($_SESSION["LOGGED_IN"] == false) {
+    header('Location: index.php');
+    notifications("Please log in first");
+    exit;
+}
+$Album_ID = $_GET['id'];
 
 ?>
 
 <html>
 <body>
 
-<div class="container"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
+<div class="container transition"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
       <div class="contentcc "style="padding:2%;">
       <div class="row">
           <div class="col-sm-3">

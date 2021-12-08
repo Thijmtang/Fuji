@@ -1,7 +1,13 @@
 
 <?php
+ob_start();
 session_start();
+
 include 'header.php';
+if ($_SESSION["LOGGED_IN"] == false) {
+    header('Location: index.php');
+    exit;
+}
 
 if (isset($_GET['id'])) {
     $UserID = $_GET['id'];
@@ -18,12 +24,14 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
     $FollowResult = mysqli_query($conn, $Follow);
     $row_cnt = mysqli_num_rows($FollowResult);
 
+    //retrieve amount of followers the artist has
     $Follow = "SELECT *
     FROM follows
     Where Receiver_ID =   $Receiver And Active IS NOT NULL";
     $FollowersResult = mysqli_query($conn, $Follow);
     $Followers_cnt = mysqli_num_rows($FollowersResult);
 
+//Artist page items
     $User = "SELECT Username,Profile_Image, Summary from Users where User_ID = $UserID";
     $albumresult = mysqli_query($conn, $Album);
     $userresult = mysqli_query($conn, $User);
@@ -35,7 +43,7 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
             $userSummary = $row['Summary'];
             $username = $row['Username'];
 
-            echo '<div class="container"style="border-radius: 34px!important;
+            echo '<div class="container transition"style="border-radius: 34px!important;
             background-color:white;">
         <div class="contentcc "style="padding:2%;">
         <div class="row" style="">
@@ -47,9 +55,7 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
     <div class="row">
     <div class="col-sm-6 align-items-center" style="text-align: center;">
     <div class="col">
-  <div class="circle">
-             <img class="img-fluid "src="Images/' . $userprofilepic . '" style=" transition: all .4s ease-in-out!important;">
-  </div>
+  <div class="circle"><img class="img-fluid "src="Images/' . $userprofilepic . '" style=" transition: all .4s ease-in-out!important;"></div>
 
 
   <div class="row" style="float:left">
@@ -61,6 +67,7 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
   <div class="row" style">
 
   <a href="FollowRequest.php?id=' . $UserID . '">';
+            //Only insert new entry if user hasnt followed receiver. else change active to 1 or null
             while ($row = mysqli_fetch_assoc($FollowResult)) {
                 if ($row['Active'] == 1) {
                     echo '
@@ -85,20 +92,8 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
                 ';
 
             }
-
-            echo '
-
-
-           </a>
-             </div>
-   </div>
-
-
-  </br>
-  <div class="summary" style = "float:left!important">' . htmlspecialchars($userSummary, ENT_QUOTES) . '</div>
-
-  </div>
-
+            echo '</a></div></div> </br>
+  <div class="summary" style = "float:left!important">' . htmlspecialchars($userSummary, ENT_QUOTES) . '</div></div>
       <div class="col-sm-6 align-items-center" style="text-align: center;   ">
 
           <div class="content"style="box-shadow: rgba(0, 0, 0, 0.1)

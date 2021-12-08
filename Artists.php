@@ -31,37 +31,38 @@ $result = mysqli_query($conn, $sql)
 
 <html>
 <body>
-
-<div class="container"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
+<div class="container transition"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
       <div class="contentcc "style="padding:2%;">
 <?php
 echo ' <div class="row" style="padding:1%; ">';
 while ($row = mysqli_fetch_assoc($result)) {
 
-    echo '
+    echo '         <div class="col-sm-12 col-md-3"style="    padding-bottom: 2%;" >
     <a href ="profile.php?id=' . $row['User_ID'] . '">
-           <div class="col-sm-12 col-md-3"  >
+
+           <div class ="content" style="    background-color: #f3f4f5;
+padding: 5%;
+border-radius: 5%;">
            <div class = "Artistpage">
            <div class="circle" >
            <img class="img-fluid "src="Images/' . $row['Profile_Image'] . '" style=" transition: .4s!important;">
            </a>
        </div>
        </div>
-       <div class="Userlink">
+       <h3 style="font-size: 100%;"><b>' . $row['Username'] . '</b></h3>
 
-       <a style = "color:black; text-decoration:none!important"href ="profile.php?id=' . urlencode($row['User_ID']) . '">
-       ' . $row['Username'] . '</a>
-</div
+
             </br>
 
             </div>
-
+            </div>
           </br>
+
 ';
 
 }
 
-?>
+?>    </div>
   </div>
  <div class="row" style="padding:1%; ">
 <?php
@@ -83,3 +84,17 @@ echo '</div>';
 
 </body>
 </html>
+
+
+<style>
+    .content{
+        transition: .3s;
+    }
+.content:hover{
+    transform: scale(1.05)!important;
+    background-color: #bed8bf!important;
+    color: white!important;
+}
+
+
+</style>

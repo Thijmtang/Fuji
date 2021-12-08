@@ -25,6 +25,7 @@ if (empty($_SESSION['ID'])) {
                         if (password_verify($passw, $row['Password'])) {
                             $_SESSION['Name'] = $row['Username'];
                             $_SESSION['ID'] = $row['User_ID'];
+                            $_SESSION['LOGGED_IN'] = true;
                             $_SESSION['Profilepic'] = $row['Profile_Image'];
                             notifications('<i class="fas fa-circle-notch" style="font-size:140%; "></i>  You have been logged in');
 
@@ -55,9 +56,10 @@ if (empty($_SESSION['ID'])) {
 ?>
 
 <html>
-    <div class= "container a" >
+    <body>
 <form  action="" method="post">
-    <body >
+<div class="container transition"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
+      <div class="contentcc "style="padding:2%;">
     <div class="mb-3" >
      <h3>Login</h3>
     </div>
@@ -70,6 +72,8 @@ if (empty($_SESSION['ID'])) {
     <input type="password" class="form-control" name="Password" placeholder="Password">
   </div>
   <button type="submit" class="btn btn-primary"name="btnSubmit"><i class="fas fa-fingerprint" style="font-size:150%!important"></i> Log in </button>
+  </div>
+
 </form>
 </div>
 </body>
