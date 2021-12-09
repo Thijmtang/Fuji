@@ -61,10 +61,12 @@ body
 
 @keyframes transitionIn{
 from{
-  opacity: 0; transform: rotateX(-10deg);}
+  opacity: 0; transform: rotateX(-10deg);height:40%;}
+  
 to{
 opacity: 1;
-transform: rotateX(0);}
+transform: rotateX(0);
+height:100%;}
 
 }
 
@@ -125,7 +127,7 @@ background-color:#fefffe;
 .navbar-expand-lg>.container, .navbar-expand-lg>.container-fluid {
     padding-right: 10px!important;
     padding-left: 10px!important;
-    top:9%;
+    margin-bottom:200%;
 }
 
 }
@@ -405,73 +407,5 @@ header.nav-fixed .container {
   color: #bed8bf;
 }
 
-.fa-beat {
-  animation:fa-beat 5s ease infinite;
-}
-@keyframes fa-beat {
-  0% {
-    transform:scale(1);
-  }
-  5% {
-    transform:scale(1.25);
-  }
-  20% {
-    transform:scale(1);
-  }
-  30% {
-    transform:scale(1);
-  }
-  35% {
-    transform:scale(1.25);
-  }
-  50% {
-    transform:scale(1);
-  }
-  55% {
-    transform:scale(1.25);
-  }
-  70% {
-    transform:scale(1);
-  
-  }
-}
-.fa-bounce {
-  display: inline-block;
-  position: relative;
-  -moz-animation: bounce 1s infinite linear;
-  -o-animation: bounce 1s infinite linear;
-  -webkit-animation: bounce 1s infinite linear;
-  animation: bounce 1s infinite linear;
-}
 
-@-webkit-keyframes bounce {
-  0% { top: 0; }
-  50% { top: -0.2em; }
-  70% { top: -0.3em; }
-  100% { top: 0; }
-}
-@-moz-keyframes bounce {
-  0% { top: 0; }
-  50% { top: -0.2em; }
-  70% { top: -0.3em; }
-  100% { top: 0; }
-}
-@-o-keyframes bounce {
-  0% { top: 0; }
-  50% { top: -0.2em; }
-  70% { top: -0.3em; }
-  100% { top: 0; }
-}
-@-ms-keyframes bounce {
-  0% { top: 0; }
-  50% { top: -0.2em; }
-  70% { top: -0.3em; }
-  100% { top: 0; }
-}
-@keyframes bounce {
-  0% { top: 0; }
-  50% { top: -0.2em; }
-  70% { top: -0.3em; }
-  100% { top: 0; }
-}
 

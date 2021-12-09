@@ -37,10 +37,10 @@ $result = mysqli_query($conn, $sql)
 echo ' <div class="row" style="padding:1%; ">';
 while ($row = mysqli_fetch_assoc($result)) {
 
-    echo '         <div class="col-sm-12 col-md-3"style="    padding-bottom: 2%;" >
+    echo '         <div class="col-sm-12 col-md-3 "style="    padding-bottom: 2%;" >
     <a href ="profile.php?id=' . $row['User_ID'] . '">
 
-           <div class ="content" style="    background-color: #f3f4f5;
+           <div class ="content " style="    background-color: #f3f4f5;
 padding: 5%;
 border-radius: 5%;">
            <div class = "Artistpage">
@@ -63,7 +63,7 @@ border-radius: 5%;">
 }
 
 ?>    </div>
-  </div>
+
  <div class="row" style="padding:1%; ">
 <?php
 

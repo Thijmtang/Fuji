@@ -28,17 +28,17 @@ $result = mysqli_query($conn, $sql)
 
 <html>
 <body>
-<div class="container transition"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
-      <div class="contentcc "style="padding:2%;">
+<div class="container transition  "style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
+      <div class="contentcc  "style="padding:2%;">
 <?php
 //problem weird padding out of
-echo ' <div class="row" style="padding:1%; ">';
+echo ' <div class="row " style="padding:1%; ">';
 while ($row = mysqli_fetch_assoc($result)) {
     echo '
 
-    <div class="col-sm-12 col-md-3"style="    padding-bottom: 2%;" >
+    <div class="col-sm-12 col-md-3 "style="    padding-bottom: 2%;" >
 
-<div class ="content" style="    background-color: #f3f4f5;
+<div class ="content " style="    background-color: #f3f4f5;
 padding: 5%;
 border-radius: 5%;">
            <div class="albumcover">
