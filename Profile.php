@@ -10,7 +10,7 @@ if ($_SESSION["LOGGED_IN"] == false) {
 }
 
 if (isset($_GET['id'])) {
-    $UserID = (int) $_GET['id'];
+    $UserID = $_GET['id'];
     $Album = "SELECT Cover_art, Album_ID
 FROM  album
 WHERE Active IS NOT NULL
@@ -35,7 +35,7 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
     $User = "SELECT Username,Profile_Image, Summary from Users where User_ID = $UserID";
     $albumresult = mysqli_query($conn, $Album);
     $userresult = mysqli_query($conn, $User);
-//only display items if given id is valid
+
     if (mysqli_num_rows($userresult) == 1) {
 
         while ($row = mysqli_fetch_assoc($userresult)) {
@@ -96,7 +96,7 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
   <div class="summary" style = "float:left!important">' . htmlspecialchars($userSummary, ENT_QUOTES) . '</div></div>
       <div class="col-sm-6 align-items-center" style="text-align: center;   ">
 
-          <div class="content "style="box-shadow: rgba(0, 0, 0, 0.1)
+          <div class="content"style="box-shadow: rgba(0, 0, 0, 0.1)
           0px 4px 12px;border-radius: 1em;margin-top:2%;margin-bottom:2%;">
 
           <div id="carouselExampleControls" class="carousel slide"
