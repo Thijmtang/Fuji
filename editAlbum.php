@@ -52,6 +52,7 @@ WHERE ALbum_ID =  $_GET[id]
 <form  action="" method="post" autocomplete="off"enctype="multipart/form-data">
 <div class="container"style="border-radius: 34px!important; background-color:white;">
       <div class="contentcc "style="padding:2%;">
+
       <h3 > Edit Album</h3>
   <div class="row" style="">
   <div class="col-sm-6 align-items-center" style="text-align: center;   ">
@@ -64,17 +65,26 @@ echo $currCover_art ?>" alt="your image"/>
 </br>
 </div>
 <div class="col-sm-6 align-items-center" style="text-align: center; ">
-<div class="Upload"><a class="nav-link " href="Upload.php?id=<?=$_GET['id']?>">Upload songs</a></div>
+<div class="Upload">
+
+<a class="nav-link " href="Upload.php?id=<?=$_GET['id']?>">Upload songs</a></div>
 <div class="content"></br>
 <?php
 
-    $Songs = AlbumSongs($conn, $_GET['id']);
+    $Songs = AlbumSongs($conn, $_GET['id'], "*");
     while ($row = mysqli_fetch_assoc($Songs)) {
-        echo '   <div class="col-sm-12">
-       <div class="Song"><h3 style="font-size:20px;">' . $row['Title'] . '</h3>  </div>
-       <a class="Delete"href="deleteSong.php?id=' . $row['Song_ID'] . '">Delete </a>
-       </div>
+        echo '
+        <div class="row song    ">
 
+        <div class="col-sm-6">
+        <h3 style="font-size:20px;">' . $row['Title'] . '</h3>
+        </div>
+
+        <div class="col-sm-6">
+       <a class="Delete " href="deleteSong.php?id=' . $row['Song_ID'] . '&albumID=' . $row['Album'] . '">Delete song</a>
+        </div>
+
+       </div>
        </br>';
 
     }
@@ -111,12 +121,10 @@ echo $currCover_art ?>" alt="your image"/>
 
 <style>
     .albumcover_page{box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;}
-    .Song{padding:1%!important;
-        border-radius: 15px!important;Background-color:#f3f3f4;
-        color:black!important; transition:.2s}
-        .Song:hover{
-            background-color:#f3f3f4!important;
-        }
+  .song{          padding: 2%;
+           Background-color:#f3f3f4;
+    border-radius: 39px!important;
+  }
 
 
   .Upload .nav-link{    transition:.3s;
@@ -141,11 +149,11 @@ echo $currCover_art ?>" alt="your image"/>
     background-color: #bed8bf;
     border-radius: 10px!important;
     background-color: #bed8bf;
-
+padding: 2%;
     color:white!important;
     border:1px solid white;
     width: 100px;
-float:right
+
   }
   .Delete:hover{
 

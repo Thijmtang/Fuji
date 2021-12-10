@@ -50,6 +50,8 @@ if (isset($_POST['btnSubmit'])) {
 <form  action="" method="post" autocomplete="off"enctype="multipart/form-data">
 
     <div class="mb-3" >
+        <a href="editAlbum.php?id=<?=$_GET['id']?>"style="color:black!important">
+<i class="fas fa-undo"> Return to Album</i></a>
      <h3>Upload a song</h3>
     </div>
   <div class="mb-3">

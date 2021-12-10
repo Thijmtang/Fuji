@@ -121,9 +121,10 @@ function showArtists($conn, $results_per_page, $page)
 
     return $result = mysqli_query($conn, $sql);
 }
-function AlbumSongs($conn, $AlbumID)
+function AlbumSongs($conn, $AlbumID, $src)
 {
-    $sql = "SELECT * from songs where Album ='$AlbumID' And Active =1";
+    $sql = "SELECT $src FROM songs where Album ='$AlbumID' And Active =1";
+
     return $Result = mysqli_query($conn, $sql);
 
 }
