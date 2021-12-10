@@ -1,20 +1,22 @@
 
 <?php
+ob_start();
 session_start();
 include 'header.php';
 
 ?>
 <?php
-//if given value is a number and exist
-if (is_numeric($_GET['id']) && isset($_GET['id'])) {
-    { $sql = "SELECT *
+//if album id exist and the current is the uploader
+if (is_numeric($_GET['id']) && isset($_GET['id']) && uploaderAlbumCheck($conn, $_GET['id'], $_SESSION['ID'])) {
+    {
+        $sql = "SELECT *
 FROM album
 WHERE ALbum_ID =  $_GET[id]
 ";
     }
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-        $currDescription = $row['Description'];
+        $currTitle = $row['Title'];
         $currCover_art = $row['Cover_art'];
     }
 //submits the data into the database
@@ -28,13 +30,14 @@ WHERE ALbum_ID =  $_GET[id]
             $currCover_art = $Foto;
         }
 
-        $newSummary = htmlspecialchars($conn, $_POST['Summary']);
-        $UpdateAlbum = "UPDATE album SET Summary='$newSummary', Profile_Image= '$currprofilepic' WHERE  User_ID = '$_SESSION[ID]'";
-        $Updateresults = mysqli_query($conn, $Updateprofile);
+        $newTitle = mysqli_real_escape_string($conn, $_POST['Title']);
+        $UpdateAlbum = "UPDATE album SET Title='$newTitle', Cover_art= '$currCover_art' WHERE  Album_ID = '$_GET[id]'";
+        $Updateresults = mysqli_query($conn, $UpdateAlbum);
 
         if ($Updateresults) {
-            notifications('<i class="fas fa-save"></i> Changes have been saved');
-            $_SESSION['Profilepic'] = $currprofilepic;
+
+            header("Location: Dashboard.php");
+            ob_end_flush();
 
         } else {
             echo mysqli_error($conn);
@@ -50,9 +53,11 @@ WHERE ALbum_ID =  $_GET[id]
 <html>
 <body>
 <form  action="" method="post" autocomplete="off"enctype="multipart/form-data">
-<div class="container"style="border-radius: 34px!important; background-color:white;">
+<div class="container transition"style="border-radius: 34px!important; background-color:white;">
       <div class="contentcc "style="padding:2%;">
-
+      <div class="mb-3" >
+      <a class ="return"href="Dashboard.php"style="color:black!important">
+<i class="fas fa-undo"> </i></a></div>
       <h3 > Edit Album</h3>
   <div class="row" style="">
   <div class="col-sm-6 align-items-center" style="text-align: center;   ">
@@ -72,12 +77,13 @@ echo $currCover_art ?>" alt="your image"/>
 <?php
 
     $Songs = AlbumSongs($conn, $_GET['id'], "*");
+
     while ($row = mysqli_fetch_assoc($Songs)) {
         echo '
         <div class="row song    ">
 
         <div class="col-sm-6">
-        <h3 style="font-size:20px;">' . $row['Title'] . '</h3>
+        <h3 style="font-size:20px;float:left">' . $row['Title'] . '</h3>
         </div>
 
         <div class="col-sm-6">
@@ -86,7 +92,6 @@ echo $currCover_art ?>" alt="your image"/>
 
        </div>
        </br>';
-
     }
     ?>
 
@@ -106,7 +111,7 @@ echo $currCover_art ?>" alt="your image"/>
 
 
 <hr/>
-<textarea name="Summary"class="form-control" id="exampleFormControlTextarea1" rows="5"><?php echo $currDescription ?></textarea>
+<textarea name="Title"class="form-control" id="exampleFormControlTextarea1" rows="1"><?php echo $currTitle ?></textarea>
 <hr/>
 <button type="submit" class="btn btn-primary" name="btnSubmit"><i class="fas fa-save"></i></button>
 </form>
@@ -146,20 +151,36 @@ echo $currCover_art ?>" alt="your image"/>
 
 
  .Delete{    transition:.3s;
-    background-color: #bed8bf;
+    background-color: red;
     border-radius: 10px!important;
-    background-color: #bed8bf;
+
 padding: 2%;
     color:white!important;
     border:1px solid white;
     width: 100px;
-
+float:right;
   }
   .Delete:hover{
 
     color:#bed8bf!important;
     border:1px solid #bed8bf;
     background-color: transparent!important;
+  }
+.return {    transition:.3s;
+
+    background-color: #bed8bf;
+    border-radius: 39px!important;
+    color:white!important;
+    border:1px solid white;
+    width: 150px;
+    text-align:center;
+    padding:1%;
+  }
+ .return:hover{
+    border-radius: 39px!important;
+    color:#bed8bf!important;
+    border:1px solid #bed8bf;
+    background-color: white!important;
   }
     </style>
 

@@ -8,6 +8,7 @@ if ($_SESSION["LOGGED_IN"] == false) {
     header('Location: index.php');
     exit;
 }
+
 if (is_numeric($_GET['id']) && isset($_GET['id'])) {
     $UserID = $_GET['id'];
 

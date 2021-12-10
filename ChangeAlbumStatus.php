@@ -1,30 +1,38 @@
 <?php
 ob_start();
+session_start();
 include "header.php";
 
 $givenAlbum = $_GET['id'];
+$UserID = $_SESSION['ID'];
 
-$Album = "SELECT Active
-FROM  album
-WHERE Album_ID = $givenAlbum";
-$albumresult = mysqli_query($conn, $Album);
-$today = date("Y-m-d");
-while ($row = mysqli_fetch_assoc($albumresult)) {
-    if ($row['Active'] == null) {
-        $UpdateStatus = "UPDATE Album SET Active=1, Date=now() WHERE  Album_ID = '$givenAlbum'";
+if (uploaderAlbumCheck($conn, $givenAlbum, $UserID)) {
+    $Album = "SELECT Active
+    FROM  album
+    WHERE Album_ID = $givenAlbum";
+    $albumresult = mysqli_query($conn, $Album);
+    $today = date("Y-m-d");
+    while ($row = mysqli_fetch_assoc($albumresult)) {
+        if ($row['Active'] == null) {
+            $UpdateStatus = "UPDATE Album SET Active=1, Date=now() WHERE  Album_ID = '$givenAlbum'";
+        }
+
+        if ($row['Active'] == 1) {
+            $UpdateStatus = "UPDATE Album SET Active=NULL WHERE  Album_ID = '$givenAlbum'";
+        }
     }
+    $Updateresults = mysqli_query($conn, $UpdateStatus);
 
-    if ($row['Active'] == 1) {
-        $UpdateStatus = "UPDATE Album SET Active=NULL WHERE  Album_ID = '$givenAlbum'";
+    if ($Updateresults) {
+
+        header("Location: Dashboard.php");
+        ob_end_flush();
+    } else {
+        echo mysqli_error($conn);
     }
-}
-$Updateresults = mysqli_query($conn, $UpdateStatus);
-
-if ($Updateresults) {
-
-    header("Location: Dashboard.php");
-    ob_end_flush();
+    mysqli_close($conn);
 } else {
-    echo mysqli_error($conn);
+    header("Location: index.php");
+    ob_end_flush();
+
 }
-mysqli_close($conn);

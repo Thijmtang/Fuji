@@ -35,7 +35,7 @@ if (isset($_POST['btnSubmit'])) {
             }
 
         } else {
-            notifications("File is too big!");
+            notifications("File is too big! Please adjust 'upload_max_filesize' in php.ini ");
 
         }
 
@@ -50,10 +50,15 @@ if (isset($_POST['btnSubmit'])) {
 <form  action="" method="post" autocomplete="off"enctype="multipart/form-data">
 
     <div class="mb-3" >
-        <a href="editAlbum.php?id=<?=$_GET['id']?>"style="color:black!important">
-<i class="fas fa-undo"> Return to Album</i></a>
+<a class ="return"href="editAlbum.php?id=<?=$_GET['id']?>"style="color:black!important">
+<i class="fas fa-undo"> </i></a></div>
+
+
+
+<div class="mb-3" >
      <h3>Upload a song</h3>
     </div>
+
   <div class="mb-3">
 
     <input type="text" class="form-control" name="title" aria-describedby="Song title"placeholder="Song title">
@@ -73,10 +78,21 @@ if (isset($_POST['btnSubmit'])) {
 </html>
 <style>
 
-audio {
+.return {    transition:.3s;
 
-    width: 100%;
-    height: 20px;
+    background-color: #bed8bf;
+    border-radius: 39px!important;
+    color:white!important;
+    border:1px solid white;
+    width: 150px;
+    text-align:center;
+    padding:1%;
+  }
+ .return:hover{
+    border-radius: 39px!important;
+    color:#bed8bf!important;
+    border:1px solid #bed8bf;
+    background-color: white!important;
+  }
 
-}
     </style>

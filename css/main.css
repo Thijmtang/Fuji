@@ -10,6 +10,7 @@
 
     transition-property: opacity, left, top, height;
 }
+
 .dropdown-menu {
   transition-duration: 2s;
  
@@ -162,18 +163,6 @@ width: 100%;
 }
 
 
-
-
-Footer{
-    content: '';
-    height: 2px;
-    position: absolute;
-    left: 0;
-    right:0;
-    bottom: 0px;
-    background: linear-gradient(to right, #e6e1f9 20%,#d4cdf5 20%,#d4cdf5 40%,#cdc3f5 40%,#cdc3f5 60%,#c7b6ff 60%,#c7b6ff 80%,#bba9ff 80%);
-    
-  }
 
 
   .btn-primary {

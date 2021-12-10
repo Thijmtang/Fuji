@@ -17,7 +17,7 @@ if (isset($_POST['btnSubmit'])) {
     $Foto = $date . $_FILES['upload']['name'];
 
     $Albumtitle = mysqli_real_escape_string($conn, $_POST['Albumtitle']);
-    $Description = mysqli_real_escape_string($conn, $_POST['AlbumDescription']);
+
     $Genre = mysqli_real_escape_string($conn, $_POST['Genre']);
     $Artist_ID = $_SESSION['ID'];
 
@@ -29,8 +29,8 @@ if (isset($_POST['btnSubmit'])) {
         //data for insertion
         move_uploaded_file($_FILES['upload']['tmp_name'], $FotoL) or die("Can't move file to $FotoL");
         //image upload data
-        $sql = "INSERT INTO album (Title, Description, Genre, Cover_art, Artist_ID)
-        VALUES ('$Albumtitle', '$Description', '$Genre',  '$Foto' ,'$Artist_ID')";
+        $sql = "INSERT INTO album (Title, Genre, Cover_art, Artist_ID)
+        VALUES ('$Albumtitle', '$Genre',  '$Foto' ,'$Artist_ID')";
         if (mysqli_query($conn, $sql)) {
             notifications('<i class="fas fa-check" style="font-size:140%; "></i> Album has been created');
 
@@ -54,10 +54,7 @@ if (isset($_POST['btnSubmit'])) {
 
     <input type="text" class="form-control" name="Albumtitle" aria-describedby="Album title"placeholder="Album title">
   </div>
-  <div class="mb-3">
 
-    <input type="text" class="form-control" name="AlbumDescription" aria-describedby="Album description"placeholder="Description">
-  </div>
 
   <div class="mb-3">
   <label for="exampleFormControlSelect1">Genre</label>

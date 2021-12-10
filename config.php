@@ -45,6 +45,15 @@ function Albums($conn, $UserID)
   AND Artist_ID = $UserID";
     return mysqli_query($conn, $Album);
 }
+// return song query for given album
+function Songs($conn, $Album)
+{$Song = "SELECT title,File
+  FROM  songs
+  WHERE Active =1
+  AND Album = $Album";
+    return mysqli_query($conn, $Song);
+
+}
 // check if the uploader id is the same as the creator of the album
 function uploaderAlbumCheck($conn, $albumID, $UserID)
 {$Album = "SELECT *
@@ -59,7 +68,7 @@ function uploaderAlbumCheck($conn, $albumID, $UserID)
 }
 function inactiveAlbums($conn, $User)
 {
-    $inactivealbums = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username FROM album,genre,users
+    $inactivealbums = "SELECT Album_ID,Title,Cover_art,Name AS Genre, Active, Date, Username FROM album,genre,users
   WHERE album.Genre = genre.Genre_ID
   And album.Artist_ID = users.User_ID
   AND Active IS NULL
@@ -69,7 +78,7 @@ function inactiveAlbums($conn, $User)
 }
 function activeAlbums($conn, $User)
 {
-    $activealbums = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username FROM album,genre,users
+    $activealbums = "SELECT Album_ID,Title,Cover_art,Name AS Genre, Active, Date, Username FROM album,genre,users
   WHERE album.Genre = genre.Genre_ID
   And album.Artist_ID = users.User_ID
   AND Active = 1
@@ -77,10 +86,9 @@ function activeAlbums($conn, $User)
 
     return mysqli_query($conn, $activealbums);
 }
-function updateResults($conn, $currprofilepic)
+function updateResults($conn, $currprofilepic, $newSummary)
 {
 
-    $newSummary = mysqli_real_escape_string($conn, $_POST['Summary']);
     $Updateprofile = "UPDATE users SET Summary='$newSummary', Profile_Image= '$currprofilepic' WHERE  User_ID = '$_SESSION[ID]'";
     return $Updateresults = mysqli_query($conn, $Updateprofile);
 }
@@ -96,6 +104,18 @@ function followingcheck($conn, $Follower, $Receiver)
   FROM follows
   Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
     return $FollowResult = mysqli_query($conn, $Follow);
+
+}
+//Returns artist and album query for given Album
+function ReturnAlbum($conn, $Album)
+{
+    $Query = "SELECT Album_ID,Title,Cover_art,Name AS Genre, Active, Date, Username,users.User_ID
+    FROM album,genre,users
+    WHERE album.Genre = genre.Genre_ID
+    And album.Artist_ID = users.User_ID
+    AND Active = 1 AND Album_ID =$Album";
+
+    return $result = mysqli_query($conn, $Query);
 
 }
 //return followers count for given users
@@ -128,11 +148,12 @@ function AlbumSongs($conn, $AlbumID, $src)
     return $Result = mysqli_query($conn, $sql);
 
 }
+//calculate albums for curent page
 
 function showAlbums($conn, $results_per_page, $page)
 {
     $this_page_first_results = ($page - 1) * $results_per_page;
-    $sql = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username,users.User_ID
+    $sql = "SELECT Album_ID,Title,Cover_art,Name AS Genre, Active, Date, Username,users.User_ID
 FROM album,genre,users
 WHERE album.Genre = genre.Genre_ID
 And album.Artist_ID = users.User_ID
@@ -153,7 +174,7 @@ function calcPages($conn, $results_per_page, $option)
         $result = mysqli_query($conn, $sql);
         $number_of_results = mysqli_num_rows($result);
     } else {
-        $sql = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username,users.User_ID FROM album,genre,users
+        $sql = "SELECT Album_ID,Title,Cover_art,Name AS Genre, Active, Date, Username,users.User_ID FROM album,genre,users
       WHERE album.Genre = genre.Genre_ID
       And album.Artist_ID = users.User_ID
       AND Active = 1";

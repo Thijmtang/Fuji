@@ -6,8 +6,8 @@ include 'header.php';
 
 if ($_SESSION["LOGGED_IN"] == false) {
     header('Location: index.php');
-    notifications("Please log in first");
     exit;
+    ob_end_flush();
 }
 
 // Fetch all information for the albums and create a row for each
@@ -20,7 +20,7 @@ $activealbumsresults = activeAlbums($conn, $_SESSION['ID']);
 <div class="container transition"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
       <div class="contentcc "style="padding:2%;">
 <?php
-echo '<h3 "><i class="fas fa-eye"></i> Public Albums</h3>';
+echo '<h3 ><i class="fas fa-eye"></i> Public Albums</h3>';
 echo ' <div class="row" style="padding:1%; ">';
 
 while ($row = mysqli_fetch_assoc($activealbumsresults)) {
@@ -28,11 +28,12 @@ while ($row = mysqli_fetch_assoc($activealbumsresults)) {
     echo '
            <div class="col-sm-12 col-md-3"  >
 
-           <h3>' . $row['Title'] . '</h3>
-           <a href="ChangeAlbumStatus.php?id=' . $row['Album_ID'] . '" onclick="return confirm(Are you sure?)">
+           <h3 style ="  white-space: nowrap;
+           overflow: hidden;">' . $row['Title'] . '</h3>
+           <a href="ChangeAlbumStatus.php?id=' . $row['Album_ID'] . '">
            <button  type="submit" class="btn btn-primary"name="btnSubmit" style ="width:100%!important; margin-bottom:5%" ><i class="fas fa-minus" style="font-size:150%!important"></i> Deactivate </button>
            </a>
-           <a href="editAlbum.php?id=' . $row['Album_ID'] . '" onclick="return confirm(Are you sure?)">
+           <a href="editAlbum.php?id=' . $row['Album_ID'] . ' ">
            <button type="submit" class="btn btn-primary"name="btnSubmit"style ="width:100%!important;margin-bottom:5%"><i class="fas fa-edit" style="font-size:150%!important"></i> Edit </button>
            </a>
            <div class="albumcover">
@@ -55,7 +56,7 @@ while ($row = mysqli_fetch_assoc($activealbumsresults)) {
 <div class="container transition"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
       <div class="contentcc "style="padding:2%;">
 <?php
-echo '<h4 style="font-weight: 800; color:Black;"><i class="fas fa-eye-slash"></i> Unlisted Albums</h4>';
+echo '<h3><i class="fas fa-eye-slash"></i> Unlisted Albums</h3>';
 echo ' <div class="row" style="padding:1%; ">';
 
 while ($row2 = mysqli_fetch_assoc($inactivealbumsresults)) {
@@ -63,13 +64,15 @@ while ($row2 = mysqli_fetch_assoc($inactivealbumsresults)) {
     echo '
            <div class="col-sm-12 col-md-3"  >
 
-           <h4 style="font-weight: 600; color:#bed8bf;">' . $row2['Title'] . '</h4>
+           <h3 style ="  white-space: nowrap;
+           overflow: hidden;">' . $row2['Title'] . '</h3>
            <a href="ChangeAlbumStatus.php?id=' . $row2['Album_ID'] . '">
 
            <button type="submit" class="btn btn-primary"name="btnSubmit" style ="width:100%!important; margin-bottom:5%"><i class="fas fa-plus" style="font-size:150%!important"></i> Activate </button>
            </a>
+           <a href="editAlbum.php?id=' . $row2['Album_ID'] . ' ">
            <button type="submit" class="btn btn-primary"name="btnSubmit"style ="width:100%!important;margin-bottom:5%"><i class="fas fa-edit" style="font-size:150%!important"></i> Edit </button>
-            </a>
+           </a>
            <div class="albumcover">
 
                   <img class="img-fluid "src="Images/' . $row2['Cover_art'] . '" ;
