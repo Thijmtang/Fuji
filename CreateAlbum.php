@@ -1,7 +1,11 @@
 <?php
 session_start();
 include 'header.php';
-
+if ($_SESSION["LOGGED_IN"] == false) {
+    header('Location: index.php');
+    notifications("Please log in first");
+    exit;
+}
 ?>
 <?php
 //submits the data into the database
@@ -19,8 +23,8 @@ if (isset($_POST['btnSubmit'])) {
 
 // only insert into database if not empty
     if (empty($Albumtitle) || empty($Genre)) {
-        echo "<h3 align=center>Vul alle velden in!</h3> ";
-        notifications('<i class="fas fa-check" style="font-size:140%; "></i> Album has been created');
+
+        notifications(' Please fill in all forms');
     } else {
         //data for insertion
         move_uploaded_file($_FILES['upload']['tmp_name'], $FotoL) or die("Can't move file to $FotoL");
@@ -39,7 +43,7 @@ if (isset($_POST['btnSubmit'])) {
 ?>
 <html>
   <body>
-<div class="container"style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
+<div class="container transition"style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
 <div class="contentcc "style="padding:2%;">
 <form  action="" method="post" autocomplete="off"enctype="multipart/form-data">
 

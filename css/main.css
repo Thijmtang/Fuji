@@ -47,7 +47,7 @@ body
 }
  .transition
 {
-  animation:transitionIn 2s;
+  animation:transitionIn 1s;
 
 }
 
@@ -79,8 +79,9 @@ nav .nav-link {
 
 .navbar-expand-lg .navbar-nav .dropdown-menu {
     position: absolute;
-    left: -94px;
-    border-radius: 0!important;
+    border-radius: 20px!important;
+    left: -97px;
+    margin-top: 13px;
     background-color: white!important;
     color:#bed8bf;
 }
@@ -250,6 +251,15 @@ color:white!important;
     transform: scale(1.05)!important;
     opacity: .75;
    }
+.hoveranim{
+
+  transition: .3s;
+}
+  .hoveranim:hover{
+    transform: scale(1.05)!important;
+    opacity: .75;
+    
+  }
 
    .module .collapse, .module .collapsing {
     height: 0rem;  /* [NUM_OF_LINES] x [LINE_HEIGHT] */

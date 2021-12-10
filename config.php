@@ -1,19 +1,3 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$db = "fuji";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $db);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>
-
-
 
 <!doctype html>
 <html lang="en">
@@ -40,11 +24,148 @@ if ($conn->connect_error) {
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$db = "fuji";
 
+try {
+    $conn = new mysqli($servername, $username, $password, $db);
+} catch (Exception $e) {
+    $error = $e->getMessage();
+    echo $error;
+}
+//retun active album query for given artist
+function Albums($conn, $UserID)
+{
+    $Album = "SELECT Cover_art, Album_ID
+  FROM  album
+  WHERE Active IS NOT NULL
+  AND Artist_ID = $UserID";
+    return mysqli_query($conn, $Album);
+}
+// check if the uploader id is the same as the creator of the album
+function uploaderAlbumCheck($conn, $albumID, $UserID)
+{$Album = "SELECT *
+  FROM  album
+  WHERE Album_ID = $albumID
+  AND Artist_ID = $UserID";
+    $AlbumResult = mysqli_query($conn, $Album);
+    $AlbumCount = mysqli_num_rows($AlbumResult);
+    if ($AlbumCount == 1) {
+        return true;} else {return false;}
 
+}
+function inactiveAlbums($conn, $User)
+{
+    $inactivealbums = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username FROM album,genre,users
+  WHERE album.Genre = genre.Genre_ID
+  And album.Artist_ID = users.User_ID
+  AND Active IS NULL
+  AND User_ID =$User";
 
+    return mysqli_query($conn, $inactivealbums);
+}
+function activeAlbums($conn, $User)
+{
+    $activealbums = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username FROM album,genre,users
+  WHERE album.Genre = genre.Genre_ID
+  And album.Artist_ID = users.User_ID
+  AND Active = 1
+  AND User_ID =$_SESSION[ID]";
 
-    <?php
+    return mysqli_query($conn, $activealbums);
+}
+function updateResults($conn, $currprofilepic)
+{
+
+    $newSummary = mysqli_real_escape_string($conn, $_POST['Summary']);
+    $Updateprofile = "UPDATE users SET Summary='$newSummary', Profile_Image= '$currprofilepic' WHERE  User_ID = '$_SESSION[ID]'";
+    return $Updateresults = mysqli_query($conn, $Updateprofile);
+}
+function Profile($conn, $UserID)
+{
+    $User = "SELECT * from Users where User_ID = $UserID";
+    return mysqli_query($conn, $User);
+}
+//return follow results for given follower and receiver.
+function followingcheck($conn, $Follower, $Receiver)
+{
+    $Follow = "SELECT *
+  FROM follows
+  Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
+    return $FollowResult = mysqli_query($conn, $Follow);
+
+}
+//return followers count for given users
+function followerscount($conn, $User)
+{
+    $Follow = "SELECT *
+    FROM follows
+    Where Receiver_ID =   $User And Active IS NOT NULL";
+    $FollowersResult = mysqli_query($conn, $Follow);
+    $Followers_cnt = mysqli_num_rows($FollowersResult);
+    return $Followers_cnt;
+}
+//shows the artists depending on the page you are on.
+function showArtists($conn, $results_per_page, $page)
+{
+    $this_page_first_results = ($page - 1) * $results_per_page;
+    $sql = "SELECT Username, User_ID,  Profile_Image
+  FROM album, users
+  WHERE users.User_ID = album.Artist_ID
+  AND  active IS NOT NULL
+  group by Artist_ID ORDER BY Username
+  LIMIT $this_page_first_results,$results_per_page";
+
+    return $result = mysqli_query($conn, $sql);
+}
+function AlbumSongs($conn, $AlbumID)
+{
+    $sql = "SELECT * from songs where Album ='$AlbumID' And Active =1";
+    return $Result = mysqli_query($conn, $sql);
+
+}
+
+function showAlbums($conn, $results_per_page, $page)
+{
+    $this_page_first_results = ($page - 1) * $results_per_page;
+    $sql = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username,users.User_ID
+FROM album,genre,users
+WHERE album.Genre = genre.Genre_ID
+And album.Artist_ID = users.User_ID
+AND Active = 1
+LIMIT $this_page_first_results,$results_per_page";
+    return $result = mysqli_query($conn, $sql);
+
+}
+
+function calcPages($conn, $results_per_page, $option)
+{
+    if ($option = "Artists") {
+        $sql = "SELECT Username, User_ID,  Profile_Image
+  FROM album, users
+  WHERE users.User_ID = album.Artist_ID
+  AND  active IS NOT NULL
+  group by Artist_ID";
+        $result = mysqli_query($conn, $sql);
+        $number_of_results = mysqli_num_rows($result);
+    } else {
+        $sql = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username,users.User_ID FROM album,genre,users
+      WHERE album.Genre = genre.Genre_ID
+      And album.Artist_ID = users.User_ID
+      AND Active = 1";
+
+        $result = mysqli_query($conn, $sql);
+        $number_of_results = mysqli_num_rows($result);
+    }
+
+    return $number_of_pages = ceil($number_of_results / $results_per_page);
+
+}
+
+//creates a closeable popup with given $message
 function notifications($Message)
 {
     echo '<div id="noti" class="container" style="margin-bottom: 5%;background-color:#bed8bf;border-radius: .5em; color:white; box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px; ">
@@ -62,28 +183,13 @@ function notifications($Message)
   </div>';
 }
 
+//remove notifications div
 ?>
-
 <script>
 function myFunction() {
   var myobj = document.getElementById("noti");
   myobj.remove();
 }
-
-
-$(document).ready(function(){
-  $(window).scroll(function(){
-  	var scroll = $(window).scrollTop();
-	  if (scroll > 300) {
-	    $(".black").css("background" , "blue");
-	  }
-
-	  else{
-		  $(".black").css("background" , "#333");
-	  }
-  })
-})
-
 </script>
 
 

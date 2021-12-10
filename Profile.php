@@ -8,33 +8,17 @@ if ($_SESSION["LOGGED_IN"] == false) {
     header('Location: index.php');
     exit;
 }
-
-if (isset($_GET['id'])) {
+if (is_numeric($_GET['id']) && isset($_GET['id'])) {
     $UserID = $_GET['id'];
-    $Album = "SELECT Cover_art, Album_ID
-FROM  album
-WHERE Active IS NOT NULL
-AND Artist_ID = $UserID";
+
     $Receiver = $_GET['id'];
     $Follower = $_SESSION['ID'];
-
-    $Follow = "SELECT *
-FROM follows
-Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
-    $FollowResult = mysqli_query($conn, $Follow);
+    $FollowResult = followingcheck($conn, $Follower, $Receiver);
+    //check if you have followed user before.
     $row_cnt = mysqli_num_rows($FollowResult);
-
-    //retrieve amount of followers the artist has
-    $Follow = "SELECT *
-    FROM follows
-    Where Receiver_ID =   $Receiver And Active IS NOT NULL";
-    $FollowersResult = mysqli_query($conn, $Follow);
-    $Followers_cnt = mysqli_num_rows($FollowersResult);
-
-//Artist page items
-    $User = "SELECT Username,Profile_Image, Summary from Users where User_ID = $UserID";
-    $albumresult = mysqli_query($conn, $Album);
-    $userresult = mysqli_query($conn, $User);
+    $Followers_cnt = followerscount($conn, $Receiver);
+    $albumresult = Albums($conn, $UserID);
+    $userresult = Profile($conn, $UserID);
 
     if (mysqli_num_rows($userresult) == 1) {
 
@@ -49,9 +33,6 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
         <div class="row" style="">
         <h1 style="font-weight:100">' . $username . ' </h1>
            </div>
-
-
-
     <div class="row">
     <div class="col-sm-6 align-items-center" style="text-align: center;">
     <div class="col">
@@ -67,7 +48,7 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
   <div class="row" style">
 
   <a href="FollowRequest.php?id=' . $UserID . '">';
-            //Only insert new entry if user hasnt followed receiver. else change active to 1 or null
+//Only insert new entry if user hasnt followed receiver. else change active to 1 or null
             while ($row = mysqli_fetch_assoc($FollowResult)) {
                 if ($row['Active'] == 1) {
                     echo '
@@ -79,11 +60,10 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
                 } else {
                     echo '
         <button type="submit" class="btn btn-primary"name="btnSubmit"
-        style ="width:100%!important;margin-bottom:5%;float:left"> Follow </button>
-
-            ';
+        style ="width:100%!important;margin-bottom:5%;float:left"> Follow </button>';
                 }
             }
+            //first time follow and not on your own profile
             if ($row_cnt == null && $_SESSION["ID"] != $_GET["id"]) {
                 echo '
             <button type="submit" class="btn btn-primary"name="btnSubmit"
@@ -92,6 +72,7 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
                 ';
 
             }
+//Summary
             echo '</a></div></div> </br>
   <div class="summary" style = "float:left!important">' . htmlspecialchars($userSummary, ENT_QUOTES) . '</div></div>
       <div class="col-sm-6 align-items-center" style="text-align: center;   ">
@@ -104,6 +85,7 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
     <div class="carousel-inner">
 
  ';
+            //Album carousal for current Artist page
             $count = 0;
             while ($row = mysqli_fetch_assoc($albumresult)) {
                 $count++;
@@ -111,13 +93,14 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
 
                     echo '
          <div class="carousel-item active">
-  <img class="d-block w-100"src="Images/' . $row['Cover_art'] . '"
+         <a href ="Album.php?id=' . $row['Album_ID'] . '">
+  <img class="d-block w-100 hoveranim"src="Images/' . $row['Cover_art'] . '"
   alt="First slide">
-  </div>';
+  </a></div>';
                 } else {
-                    echo '<div class="carousel-item ">
-              <img class="d-block w-100"src="Images/' . $row['Cover_art'] . '" alt="Second slide">
-            </div>';
+                    echo '           <a href ="Album.php?id=' . $row['Album_ID'] . '"><div class="carousel-item ">
+              <img class="d-block w-100 hoveranim"src="Images/' . $row['Cover_art'] . '" alt="Second slide">
+              </a></div>';
                 }
 
             }
@@ -135,17 +118,19 @@ Where Follower_ID =$Follower AND Receiver_ID = $Receiver";
             </div>
     </div>
 
-    </div>'
-
-                ;
+    </div>';
 
             }
 
         }
+
     } else {
 
         notifications("User not found");
     }
+} else {
+
+    notifications("User not found");
 }
 ?>
 

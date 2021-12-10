@@ -1,30 +1,16 @@
 <?php
 session_start();
 include 'header.php';
-// Fetch all information for the albums and create a row for each
-$results_per_page = 8;
-$sql = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username,users.User_ID FROM album,genre,users
-WHERE album.Genre = genre.Genre_ID
-And album.Artist_ID = users.User_ID
-AND Active = 1";
-
-$result = mysqli_query($conn, $sql);
-
-$number_of_results = mysqli_num_rows($result);
-$number_of_pages = ceil($number_of_results / $results_per_page);
 
 if (empty($_GET['page'])) {$_GET['page'] = 1;
     $page = 1;} else { $page = $_GET['page'];}
 
-$this_page_first_results = ($page - 1) * $results_per_page;
-$sql = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username,users.User_ID
-FROM album,genre,users
-WHERE album.Genre = genre.Genre_ID
-And album.Artist_ID = users.User_ID
-AND Active = 1
-LIMIT $this_page_first_results,$results_per_page";
-$result = mysqli_query($conn, $sql)
-?>
+// Fetch all information for the albums and create a row for each
+if (is_numeric($_GET['page'])) {
+    $results_per_page = 8;
+    $number_of_pages = calcPages($conn, $results_per_page, "Music");
+    $result = showAlbums($conn, $results_per_page, $page);
+    ?>
 
 <html>
 <body>
@@ -32,9 +18,9 @@ $result = mysqli_query($conn, $sql)
       <div class="contentcc "style="padding:2%;">
 <?php
 //problem weird padding out of
-echo ' <div class="row" style="padding:1%; ">';
-while ($row = mysqli_fetch_assoc($result)) {
-    echo '
+    echo ' <div class="row" style="padding:1%; ">';
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '
 
     <div class="col-sm-12 col-md-3"style="    padding-bottom: 2%;" >
 
@@ -59,24 +45,27 @@ border-radius: 5%;">
 
 ';
 
-}
+    }
 
-?>
+    ?>
 </div>
  <div class="row" style="padding:1%; ">
  <?php
 
-echo ' <div class="col ">';
+    echo ' <div class="col ">';
 
-for ($page = 1; $page <= $number_of_pages; $page++) {
+    for ($page = 1; $page <= $number_of_pages; $page++) {
 
-    if ($page == $_GET['page']) {
-        echo '<a href="Music.php?page=' . $page . '" style=" border-radius: 16%;color:White; padding:10px;background-color:#bed8bf;margin-right:1%!important"> ' . $page . ' </a>';
-    } else {
-        echo '<a href="Music.php?page=' . $page . '" style=" border-radius: 16%;color:#bed8bf;padding:10px;background-color:#f3f3f4;margin-right:1%!important"> ' . $page . ' </a>';
+        if ($page == $_GET['page']) {
+            echo '<a href="Music.php?page=' . $page . '" style=" border-radius: 16%;color:White; padding:10px;background-color:#bed8bf;margin-right:1%!important"> ' . $page . ' </a>';
+        } else {
+            echo '<a href="Music.php?page=' . $page . '" style=" border-radius: 16%;color:#bed8bf;padding:10px;background-color:#f3f3f4;margin-right:1%!important"> ' . $page . ' </a>';
+        }
     }
-}
-echo '</div>';
+    echo '</div>';
+
+} else {notifications("Page not found");}
+
 ?>
 </div>
 </body>

@@ -7,7 +7,7 @@ include 'header.php';
 ?>
 
 <?php
-if (empty($_SESSION['ID'])) {
+if (empty($_SESSION['LOGGED_IN'])) {
     if (isset($_POST['btnSubmit'])) {
         $naam = mysqli_real_escape_string($conn, $_POST['Email']);
         $passw = mysqli_real_escape_string($conn, $_POST['Password']);

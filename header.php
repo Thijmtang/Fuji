@@ -45,7 +45,7 @@ if (!empty($_SESSION['Name'])) {
 
   <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
 
-  <div class="Profile_image" style = "width:35px;height:35px;" >
+  <div class="Profile_image" style = "width:30px;height:30px;" >
   <img class ="img-fluid" id="Profile image" src="Images/' . $_SESSION['Profilepic'] . '"  />
   </div>
 
@@ -54,7 +54,7 @@ if (!empty($_SESSION['Name'])) {
        <a class="dropdown-item" href="Profile.php?id=' . $_SESSION['ID'] . '"> My profile</a>
    <a class="dropdown-item" href="Dashboard.php"><i class="fas fa-border-all" style="font-size:120%"></i> Dashboard</a>
 
-    <a class="dropdown-item" href="Upload_song.php"><i class="fas fa-file-upload" style="font-size:120%"></i> Upload music</a>
+
     <a class="dropdown-item" href="CreateAlbum.php"><i class="fas fa-pencil-alt" style="font-size:120%"></i> Create Album</a>
     <div class="dropdown-divider"></div>
 

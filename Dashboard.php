@@ -11,18 +11,8 @@ if ($_SESSION["LOGGED_IN"] == false) {
 }
 
 // Fetch all information for the albums and create a row for each
-$activealbums = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username FROM album,genre,users
-WHERE album.Genre = genre.Genre_ID
-And album.Artist_ID = users.User_ID
-AND Active = 1
-AND User_ID =$_SESSION[ID]";
-$inactivealbums = "SELECT Album_ID,Title,Description,Cover_art,Name AS Genre, Active, Date, Username FROM album,genre,users
-WHERE album.Genre = genre.Genre_ID
-And album.Artist_ID = users.User_ID
-AND Active IS NULL
-AND User_ID =$_SESSION[ID]";
-$inactivealbumsresults = mysqli_query($conn, $inactivealbums);
-$activealbumsresults = mysqli_query($conn, $activealbums);
+$inactivealbumsresults = inactiveAlbums($conn, $_SESSION['ID']);
+$activealbumsresults = activeAlbums($conn, $_SESSION['ID']);
 ?>
 
 <html>
@@ -30,7 +20,7 @@ $activealbumsresults = mysqli_query($conn, $activealbums);
 <div class="container transition"style="border-radius: 34px!important;background-color:#fefffe!important;margin-bottom:2%;">
       <div class="contentcc "style="padding:2%;">
 <?php
-echo '<h4 style="font-weight: 800; color:Black;"><i class="fas fa-eye"></i> Public Albums</h4>';
+echo '<h3 "><i class="fas fa-eye"></i> Public Albums</h3>';
 echo ' <div class="row" style="padding:1%; ">';
 
 while ($row = mysqli_fetch_assoc($activealbumsresults)) {
@@ -38,7 +28,7 @@ while ($row = mysqli_fetch_assoc($activealbumsresults)) {
     echo '
            <div class="col-sm-12 col-md-3"  >
 
-           <h4 style="font-weight: 600; color:#bed8bf;">' . $row['Title'] . '</h4>
+           <h3>' . $row['Title'] . '</h3>
            <a href="ChangeAlbumStatus.php?id=' . $row['Album_ID'] . '" onclick="return confirm(Are you sure?)">
            <button  type="submit" class="btn btn-primary"name="btnSubmit" style ="width:100%!important; margin-bottom:5%" ><i class="fas fa-minus" style="font-size:150%!important"></i> Deactivate </button>
            </a>

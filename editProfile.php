@@ -1,44 +1,38 @@
 
 <?php
+ob_start();
 session_start();
-include 'header.php';
 
+include 'header.php';
+if ($_SESSION["LOGGED_IN"] == false) {
+    header('Location: index.php');
+    exit;
+}
 ?>
 <?php
-
-$sql = "SELECT *
-FROM users
-WHERE User_ID =  $_SESSION[ID]
-";
-
-$result = mysqli_query($conn, $sql);
+$result = Profile($conn, $_SESSION['ID']);
 while ($row = mysqli_fetch_assoc($result)) {
     $currsummary = $row['Summary'];
     $currprofilepic = $row['Profile_Image'];
 }
 //submits the data into the database
 if (isset($_POST['btnSubmit'])) {
-    $date = date('m_d_Y-H-i_s');
-    $Foto = $date . $_FILES['upload']['name'];
-    $FotoL = 'Images/' . $date . $_FILES['upload']['name'];
+
     if (!empty($_FILES['upload']['name']) && $currprofilepic != $_FILES['upload']['name']) {
-
+        $date = date('m_d_Y-H-i_s');
+        $Foto = $date . $_FILES['upload']['name'];
+        $FotoL = 'Images/' . $date . $_FILES['upload']['name'];
         move_uploaded_file($_FILES['upload']['tmp_name'], $FotoL) or die("Can't move file to $FotoL");
-        $currprofilepic = $Foto;
+
+        if (updateResults($conn, $Foto)) {
+            notifications('<i class="fas fa-save"></i> Changes have been saved</br> Please refresh the page');
+            $_SESSION['Profilepic'] = $Foto;
+        } else {
+            echo mysqli_error($conn);
+        }
+        mysqli_close($conn);
+
     }
-
-    $newSummary = mysqli_real_escape_string($conn, $_POST['Summary']);
-    $Updateprofile = "UPDATE users SET Summary='$newSummary', Profile_Image= '$currprofilepic' WHERE  User_ID = '$_SESSION[ID]'";
-    $Updateresults = mysqli_query($conn, $Updateprofile);
-
-    if ($Updateresults) {
-        notifications('<i class="fas fa-save"></i> Changes have been saved');
-        $_SESSION['Profilepic'] = $currprofilepic;
-
-    } else {
-        echo mysqli_error($conn);
-    }
-    mysqli_close($conn);
 
 }
 ?>
