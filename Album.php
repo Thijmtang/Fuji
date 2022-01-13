@@ -43,7 +43,7 @@ if (mysqli_num_rows($AlbumResults) == 1) {
         while ($row = mysqli_fetch_assoc($SongResult)) {
             echo '
               <div class="col-sm-12" style="padding-left:0!important;padding-right:0!important;">
-              <div class="Song">
+              <div class="Song" >
                   ' . $row['title'] . '
                   <audio src="Audio/' . $row['File'] . '" controls>
 

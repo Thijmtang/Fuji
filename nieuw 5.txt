@@ -1,0 +1,15 @@
+   .col{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+.wedstrijd_card{
+color:white;
+background-color:red; 
+outline-style: solid;
+outline-color: black;
+
+margin-top:10%!important;
+margin-bottom:10%!important;
+padding:10%;
+}

@@ -208,7 +208,13 @@ font-weight: bold;
 text-decoration: none;
 color:white!important;
 }
+b{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp: 1;
 
+}
 
 .circle {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
